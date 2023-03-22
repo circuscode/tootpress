@@ -1,0 +1,14 @@
+/* 
+TootPress CSS @ Admin
+*/
+
+.tootpress-healtycheck-warning
+{
+    background-color:yellow;
+}
+
+.tootpress-healtycheck-error
+{
+    color:white;
+    background-color:red;
+}
