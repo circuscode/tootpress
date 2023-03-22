@@ -28,7 +28,7 @@ The plugin copies your toots from Mastodon continuously and saves them into the 
 2. Restrict the Authorization of the Application to Read (all data)
 3. Maintain Mastodon Instance and Access Token in the TootPress Settings
 4. Retrieve your Account ID (WordPress Tools/Toots)
-5. Maintain the Account ID in the TootPress Settins
+5. Maintain the Account ID in the TootPress Settings
 6. Create a new WordPress Page and add the Page to your Main Menu
 7. Maintain the Page ID in the TootPress Settings (see URL editing the Page)
 8. Run Mastodon API Request once (WordPress Tools/Toots)
@@ -127,11 +127,11 @@ All the same. It works both.
 
 ### How does TootPress handle the canonical URL?
 
-TootPress does not modify the existing canonical url handling in WordPress. If you want to change the canonical url, you must control that with a SEO plugin.
+TootPress does not modify the existing canonical url handling in WordPress. If you want to change the canonical url, you must control that with a SEO plugin. This is relevant for the paged TootPress subpages.
 
 ### What have to be considered with the usage of caching plugins?
 
-The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page including the toots. Another possibility is removing the affected page from the cache, if new tweets have loaded. For this, a WordPress Action is fired by the plugin (mathilda_tweets_updated).
+The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page including the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin (see above).
 
 ### Why require some updates a reset of the plugin and reload of the data?
 
