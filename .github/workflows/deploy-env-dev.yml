@@ -14,7 +14,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: unmus.de
-        username: ${{ secrets.FTP_USER_GUTHUBDEPLOY }}
+        username: ${{ secrets.FTP_USER_GITHUBDEPLOY }}
         password: ${{ secrets.FTP_PASSWORD_GITHUBDEPLOY }}
         protocol: ftp
         server-dir: unmus/dev/wordpress/wp-content/plugins/tootpress/
