@@ -1,0 +1,55 @@
+/* 
+TootPress CSS @ Blog
+*/
+
+.tootpress-toot {
+    margin-bottom: 60px;
+    clear:both;
+}
+
+.tootpress-toot-symbol {
+    float:left !important;
+    margin-top:5px;
+}
+
+.toot-content, .toot-date, .toot-image {
+    margin-left:60px;
+}
+
+.toot-date {
+    font-size:85%;
+}
+
+.toot-date p {
+    margin-bottom:0px;
+}
+
+.toot-content p {
+    margin-top:10px;
+}
+
+.toot-image img {
+    max-width: 100%;
+}
+
+.tootpress_nav {
+    margin-top:80px;
+    width:100%;
+}
+
+.tootpress_nav_number {
+    margin-right:30px;
+    text-decoration:none !important;
+}
+
+.tootpress_nav .active {
+    font-weight:bold;
+}
+
+.tootpress_nav_dots {
+    margin-right:30px;
+}
+
+.tootpress_nav_standard_newer_toots {
+    margin-right:30px;
+}
