@@ -4,7 +4,7 @@ TootPress copies your toots from Mastodon to WordPress continuously.
 
 ## Description
 
-The plugin copies your toots from Mastodon continuously and saves them into the WordPress database. The toots can be displayed on the blog chronologically (but do not have to). Indeed, Mastodon is also blogging, micro-blogging so to speak.  
+TootPress brings your data back and copies your toots from Mastodon to WordPress continuously. The toots will be saved in the WordPress database and can be displayed on the blog chronologically (but do not have to). Indeed, Mastodon is also blogging, micro-blogging so to speak.  
 
 ## Functions
 
@@ -16,32 +16,41 @@ The plugin copies your toots from Mastodon continuously and saves them into the 
 
 ## Installation
 
-1. Download the plugin from the GitHub Repository (see Releases)
-2. Rename the folder to "tootpress"
-2. Upload the plugin to the WordPress Plugin Directory
+1. Download the plugin from the GitHub Repository (see latest Release)
+2. Rename the downloaded folder to "tootpress"
+2. Upload the folder to the WordPress Plugin Directory
 3. Activate the plugin in WordPress
 4. Follow the configuration manual
 
 ## Configuration
 
-1. Create an Application on your Mastodon Instance for API Access (Account Settings/Applications)
-2. Restrict the Authorization of the Application to Read (all data)
+1. Create an Application on your Mastodon Instance to get API Access (under Settings/Development)
+2. Restrict the Authorization of the created Application to Read (all data)
 3. Maintain Mastodon Instance and Access Token in the TootPress Settings
-4. Retrieve your Account ID (WordPress Tools/Toots)
+4. Retrieve your Account ID (in WordPress under Tools/Toots)
 5. Maintain the Account ID in the TootPress Settings
-6. Create a new WordPress Page and add the Page to your Main Menu
-7. Maintain the Page ID in the TootPress Settings (see URL editing the Page)
-8. Run Mastodon API Request once (WordPress Tools/Toots)
+6. Create a new WordPress Page and add the Page to your Menu
+7. Maintain the Page ID in the TootPress Settings (you find the Page ID in URL of the Browser when editing the Page in WordPress)
+8. Run Mastodon API Request once (in WordPress under Tools/Toots)
 9. Activate Steady Fetch
 10. That's it!
 
+## Instructions for Use
+
+* You find TootPress in WordPress in the area of Settings and Tools
+* Steady Fetch activates the automatic and regular load of new toots
+* First API Request will copy your last 40 toots
+* New toots will be loaded every 15 minutes (customizable)
+* You can load your complete timeline into WordPress with the eponymous function
+* Loading your complete timeline can take several hours depending of the amount of toots
+* 480 toots are loaded per hour as maximum
+* You can run a Mastodon API Request everytime at your own with the eponymous function
+* There is no prescribed order for the execution of Steady Fetch, Complete Timeline or manual requests
+* If problems occur, TootPress provides a Healthy Check
+
 ## CSS classes
 
-TootPress comes with basic CSS Styles. For best fit it is required to add additional styles in your theme. All TootPress UI elements can be addressed with individual CSS selectors. Please use browser debugger to find the right classes. 
-
-## TootPress API
-
-WordPress Action: tootpress_toots_update (fired on toot update)
+TootPress comes with basic CSS Styles. For best fit it is required to add additional styles in your theme. All TootPress UI elements can be addressed with individual CSS selectors. Please use the browser development tools to find the right classes. 
 
 ## Data & Files
 
@@ -71,13 +80,17 @@ Following toot objects are not supported.
 * Emojis
 * Teaser
 
-## Not supported Toot Types
+## Excluded Toot Types
 
-Following toot types are not supported.
+Following toot types are excluded from the data transfer.
 
 * Boosts
 * Replys
 * Private Toots
+
+## TootPress API
+
+WordPress Action: tootpress_toots_update (fired on toot update)
 
 ## TootPress Cron Jobs @ WordPress
 
@@ -96,58 +109,37 @@ Following components of WordPress are used in TootPress.
 * Date Functions
 * MySQL Functions
 * URL Functions
-* WordPress Functions
 * File Functions
+* Content Functions
 
 ## Frequently Asked Questions
 
-### Which Toots are displayed in the blog?
+### Why are boosts, replys and private toots not supported?
 
-Only your own toots will be displayed. Boosts (these are not your toots), Replys (these are communication, no micro-posts) and private Toots are excluded.
-
-### Can the toots be loaded automaticly?
-
-Yes. Activate Steady Fetch for this.
-
-### How many toots will be loaded with an API Request?
-
-40 toots at maximum.
-
-### How often will the toots be loaded?
-
-As Standard your toots will be fetched from Mastodon every 15 minutes. But you can define the period in minutes different in the plugin settings.
-
-### Can I load my complete Mastodon timeline?
-
-Yes. You can load your complete Mastodon timeline with this plugin. Just run the corresponding function. The Load will take some time. Every 5 minutes 40 toots will be loaded until the timeline is complete.
-
-### What do I have to do first, activate steady fetch or load the complete timeline first?
-
-All the same. It works both.
+Boosts are not your toots. Replys are communication, but not micro-posts. Private Toots should stay private.
 
 ### How does TootPress handle the canonical URL?
 
-TootPress does not modify the existing canonical url handling in WordPress. If you want to change the canonical url, you must control that with a SEO plugin. This is relevant for the paged TootPress subpages.
+TootPress does not modify the existing canonical url handling in WordPress. If you want to create a unique canonical url for each TootPress subpage, you must control that with a SEO plugin. This becomes relevant when your toots must be distributed over several pages and the plugin starts the paging process.
 
 ### What have to be considered with the usage of caching plugins?
 
-The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page including the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin (see above).
-
-### Why require some updates a reset of the plugin and reload of the data?
-
-The plugin does still not have a high maturity grade. It is in a early stage of development. To avoid data inconsistency and process errors some updates require a reload of the data.
+The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page containing the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin.
 
 ### Does TootPress support WordPress Multisite?
 
 No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
 
-### Can TootPress load toots from several Mastodon instances?
-
-No.
-
 ## Live Demo
 
 [Here!](https://www.unmus.de/troets/)
+
+## Maturity Grade
+
+* Low maturity level
+* Early stage of development
+* Future updates may require a complete reload of the toots. 
+* To avoid data inconsistancy and process errors 
 
 ## Branches
 
@@ -163,6 +155,7 @@ Hotfix and release branches will not be applied.
 ## Built With
 
 * [Visual Studio Code](https://code.visualstudio.com)
+* [Postman](https://postman.com)
 * [JSON Viewer](https://jsonviewer.app)
 
 ## License
