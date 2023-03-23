@@ -30,7 +30,7 @@ TootPress brings your data back and copies your toots from Mastodon to WordPress
 4. Retrieve your Account ID (in WordPress under Tools/Toots)
 5. Maintain the Account ID in the TootPress Settings
 6. Create a new WordPress Page and add the Page to your Menu
-7. Maintain the Page ID in the TootPress Settings\(you find the Page ID in URL of the Browser when editing the Page in WordPress)
+7. Maintain the Page ID in the TootPress Settings<br/>(you find the Page ID in URL of the Browser when editing the Page in WordPress)
 8. Run Mastodon API Request once (in WordPress under Tools/Toots)
 9. Activate Steady Fetch
 10. That's it!
