@@ -6,7 +6,7 @@ TootPress copies your toots from Mastodon to WordPress continuously.
 
 TootPress brings your data back and copies your toots from Mastodon to WordPress continuously. The toots will be saved in the WordPress database and can be displayed on the blog chronologically (but do not have to). Indeed, Mastodon is also blogging, micro-blogging so to speak.  
 
-## Functions
+## Features
 
 * Copy your toots back
 * Copy your tooted images back
@@ -30,7 +30,7 @@ TootPress brings your data back and copies your toots from Mastodon to WordPress
 4. Retrieve your Account ID (in WordPress under Tools/Toots)
 5. Maintain the Account ID in the TootPress Settings
 6. Create a new WordPress Page and add the Page to your Menu
-7. Maintain the Page ID in the TootPress Settings (you find the Page ID in URL of the Browser when editing the Page in WordPress)
+7. Maintain the Page ID in the TootPress Settings\(you find the Page ID in URL of the Browser when editing the Page in WordPress)
 8. Run Mastodon API Request once (in WordPress under Tools/Toots)
 9. Activate Steady Fetch
 10. That's it!
@@ -47,17 +47,6 @@ TootPress brings your data back and copies your toots from Mastodon to WordPress
 * You can run a Mastodon API Request everytime at your own with the eponymous function
 * There is no prescribed order for the execution of Steady Fetch, Complete Timeline or manual requests
 * If problems occur, TootPress provides a Healthy Check
-
-## CSS classes
-
-TootPress comes with basic CSS Styles. For best fit it is required to add additional styles in your theme. All TootPress UI elements can be addressed with individual CSS selectors. Please use the browser development tools to find the right classes. 
-
-## Data & Files
-
-TootPress creates 2 folders within wp-content/uploads.
-
-* tootpress-mastodonapidata = Archive of the received Mastodon API data
-* tootpress-images = Toot Image Folder 
 
 ## Supported Toot Objects
 
@@ -88,14 +77,25 @@ Following toot types are excluded from the data transfer.
 * Replys
 * Private Toots
 
-## TootPress API
+## CSS classes
 
-WordPress Action: tootpress_toots_update (fired on toot update)
+TootPress comes with basic CSS Styles. For best fit it is required to add additional styles in your theme. All TootPress UI elements can be addressed with individual CSS selectors. Please use the browser development tools to find the right classes. 
+
+## Data & Files
+
+TootPress creates 2 folders within wp-content/uploads.
+
+* tootpress-mastodonapidata = Archive of the received Mastodon API data
+* tootpress-images = Toot Image Folder 
 
 ## TootPress Cron Jobs @ WordPress
 
 * Steady Fetch (every 15 minutes, customizable)
 * Load Complete Timeline (every 5 minutes)
+
+## TootPress API
+
+WordPress Action: tootpress_toots_update (fired on toot update)
 
 ## WordPress Framework
 
@@ -124,15 +124,11 @@ TootPress does not modify the existing canonical url handling in WordPress. If y
 
 ### What have to be considered with the usage of caching plugins?
 
-The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page containing the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin.
+The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page containing the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin, which then must be processed by your caching plugin.
 
 ### Does TootPress support WordPress Multisite?
 
 No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
-
-## Live Demo
-
-[Here!](https://www.unmus.de/troets/)
 
 ## Maturity Grade
 
@@ -151,6 +147,10 @@ This repository follows the git-flow workflow to a large extent.
 * bugfix branches contain dedicated bugfixes in development
 
 Hotfix and release branches will not be applied.
+
+## Live Demo
+
+[Here!](https://www.unmus.de/troets/)
 
 ## Built With
 
