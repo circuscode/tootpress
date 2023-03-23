@@ -54,7 +54,6 @@ function tootpress_create_authorization_header() {
     // Request Mastodon API forwards
     } elseif($direction=='forwards') {
    
-   
         $since_id=tootpress_get_latest_toot();
 
         if($since_id) {
