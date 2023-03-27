@@ -17,7 +17,7 @@ jobs:
         username: ${{ secrets.FTP_USER_GITHUBDEPLOY }}
         password: ${{ secrets.FTP_PASSWORD_GITHUBDEPLOY }}
         protocol: ftp
-        server-dir: unmus/public/wordpress/wp-content/plugins/tootpress/
+        server-dir: ${{ vars.FTP_PATH_PUBLIC }}
         exclude: |
           **/.git*
           **/.git*/**
