@@ -97,20 +97,20 @@ if (!defined('ABSPATH')) { exit; }
 	// Check: Are TootPress Folders in WordPress Uploads existing and writable?
 	$apidata_dir_path=tootpress_get_apidata_directory();
 	if ( ! file_exists( $apidata_dir_path ) ) {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.$apidata_dir_path.' not found.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($apidata_dir_path).' not found.';
 	} elseif (is_writable($apidata_dir_path)) {
-		$output.='Directory '.$apidata_dir_path.' exists and is writable.';
+		$output.='Directory '.esc_html($apidata_dir_path).' exists and is writable.';
   	} else {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.$apidata_dir_path.' is not writable.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($apidata_dir_path).' is not writable.';
   	}
 	$output.='<br/>';
 	$image_dir_path=tootpress_get_path_image_directory();
 	if ( ! file_exists( $image_dir_path ) ) {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.$image_dir_path.' not found.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($image_dir_path).' not found.';
 	} elseif (is_writable($image_dir_path)) {
-		$output.='Directory '.$image_dir_path.' exists and is writable.';
+		$output.='Directory '.esc_html($image_dir_path).' exists and is writable.';
   	} else {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.$image_dir_path.' is not writable.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($image_dir_path).' is not writable.';
   	}
 	$output.='<br/>';
 
