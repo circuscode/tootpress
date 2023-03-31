@@ -65,8 +65,13 @@ function tootpress_create_mastodon_apiresponse_file($toot_array) {
 
  function tootpress_retrieve_image_from_mastodon($image_url) {
 
+    // If download function is not available, include it
+    if ( ! function_exists( 'download_url' ) ) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+    }
+
     // Retrive Image from Mastodon
-    $image = file_get_contents($image_url);
+    $tmp_image_file = download_url( $image_url );
 
     // Create Storage Location URL
     $image_file_name = tootpress_get_image_name($image_url);
@@ -77,9 +82,8 @@ function tootpress_create_mastodon_apiresponse_file($toot_array) {
         // Save File to TootPress Image Directory
         if (!file_exists($tootpress_image_wordpress_url))
             {
-                $fp = fopen($tootpress_image_wordpress_url, "w");
-                fwrite($fp, $image);
-                fclose($fp);
+                copy( $tmp_image_file, $tootpress_image_wordpress_url );
+                @unlink( $tmp_image_file );
             }
     } else {
         return false;
