@@ -54,46 +54,46 @@ function tootpress_options_content() {
 
  function tootpress_options_display_mastodon_instance()
  {
-	 echo '<input class="regular-text" type="text" name="tootpress_mastodon_instance" id="tootpress_mastodon_instance" value="'. get_option('tootpress_mastodon_instance') .'"/>';
+	 echo '<input class="regular-text" type="text" name="tootpress_mastodon_instance" id="tootpress_mastodon_instance" value="'. esc_attr(get_option('tootpress_mastodon_instance')) .'"/>';
  }
  
 function tootpress_options_display_mastodon_oauth_access_token()
 {
-	echo '<input class="regular-text" type="text" name="tootpress_mastodon_oauth_access_token" id="tootpress_mastodon_oauth_access_token" value="'. get_option('tootpress_mastodon_oauth_access_token') .'"/>';
+	echo '<input class="regular-text" type="text" name="tootpress_mastodon_oauth_access_token" id="tootpress_mastodon_oauth_access_token" value="'. esc_attr(get_option('tootpress_mastodon_oauth_access_token')) .'"/>';
 }
 
 function tootpress_options_display_mastodon_account_id()
 {
-	echo '<input type="text" name="tootpress_mastodon_account_id" id="tootpress_mastodon_account_id" value="'. get_option('tootpress_mastodon_account_id') .'"/>';
+	echo '<input type="text" name="tootpress_mastodon_account_id" id="tootpress_mastodon_account_id" value="'. esc_attr(get_option('tootpress_mastodon_account_id')) .'"/>';
 }
 
 function tootpress_options_display_page_id()
 {
-	echo '<input type="text" name="tootpress_page_id" id="tootpress_page_id" value="'. get_option('tootpress_page_id') .'"/>';
+	echo '<input type="text" name="tootpress_page_id" id="tootpress_page_id" value="'. esc_attr(get_option('tootpress_page_id')) .'"/>';
 }
 
 function tootpress_options_display_amount_toots_page()
 {
-	echo '<input type="text" name="tootpress_amount_toots_page" id="tootpress_amount_toots_page" value="'. get_option('tootpress_amount_toots_page') .'"/>';
+	echo '<input type="text" name="tootpress_amount_toots_page" id="tootpress_amount_toots_page" value="'. esc_attr(get_option('tootpress_amount_toots_page')) .'"/>';
 }
 
 function tootpress_options_display_cron_period()
 {
-	echo '<input type="text" name="tootpress_cron_period" id="tootpress_cron_period" value="'. tootpress_get_custom_cron_period_in_minutes() .'"/>';
+	echo '<input type="text" name="tootpress_cron_period" id="tootpress_cron_period" value="'. esc_attr(tootpress_get_custom_cron_period_in_minutes()) .'"/>';
 }
 
 function tootpress_options_display_navigation()
 {
-	echo '<input type="radio" id="tootpress_navigation_standard" name="tootpress_navigation" value="standard" ' .  checked('standard', get_option('tootpress_navigation'), false) . '/>'; 
-	echo '<label for="tootpress_navigation_standard">Standard</label>';
+	echo '<input type="radio" id="tootpress_navigation_standard" name="tootpress_navigation" value="standard" ' .  checked('standard', esc_attr(get_option('tootpress_navigation')), false) . '/>'; 
+	 '<label for="tootpress_navigation_standard">Standard</label>';
 	echo '<br/>&nbsp;<br/>';
-	echo '<input type="radio" id="tootpress_navigation_numbers" name="tootpress_navigation" value="numbers" ' .  checked('numbers', get_option('tootpress_navigation'), false) . '/>'; 
+	echo '<input type="radio" id="tootpress_navigation_numbers" name="tootpress_navigation" value="numbers" ' .  checked('numbers', esc_attr(get_option('tootpress_navigation')), false) . '/>'; 
 	echo '<label for="tootpress_navigation_numbers">Numbers</label>';
 }	
 
 function tootpress_options_display_css()
 {
-	echo '<input type="checkbox" name="tootpress_css" value="1" ' .  checked(1, tootpress_get_css_option(), false) . '/>'; 
+	echo '<input type="checkbox" name="tootpress_css" value="1" ' .  checked(1, esc_attr(tootpress_get_css_option()), false) . '/>'; 
 }	
 
 /**
