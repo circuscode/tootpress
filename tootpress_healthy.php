@@ -160,37 +160,37 @@ if (!defined('ABSPATH')) { exit; }
 
 	// Amount of previous API Requests
 	$amount_of_api_requests=tootpress_get_amount_of_api_requests();
-	$output.='Amount of Requests to Mastodon API: '.$amount_of_api_requests;
+	$output.='Amount of Requests to Mastodon API: '.esc_html($amount_of_api_requests);
 	$output.='<br/>';
 
 	// Amount of Toots in Database
 	$amount_of_toots=tootpress_get_amount_of_toots();
-	$output.='Amount of Toots in Database: '.$amount_of_toots;
+	$output.='Amount of Toots in Database: '.esc_html($amount_of_toots);
 	$output.='<br/>';
 
 	// Amount of Media in Database
 	$amount_of_media=tootpress_get_amount_of_media();
-	$output.='Amount of Media in Database: '.$amount_of_media;
+	$output.='Amount of Media in Database: '.esc_html($amount_of_media);
 	$output.='<br/>';
 
 	// Latest Toot
 	$latest_toot=tootpress_get_latest_toot();
-	if($latest_toot){$output.='Latest Toot: '.$latest_toot.'<br/>';}
+	if($latest_toot){$output.='Latest Toot: '.esc_html($latest_toot).'<br/>';}
 
 	// Oldest Toot
 	$oldest_toot=tootpress_get_oldest_toot();
-	if($oldest_toot){$output.='Oldest Toot: '.$oldest_toot.'<br/>';};
+	if($oldest_toot){$output.='Oldest Toot: '.esc_html($oldest_toot).'<br/>';};
 
 	// Last Insert
 	$last_insert=get_option('tootpress_last_insert');
-	if($last_insert){$output.='Last Insert: '.$last_insert.'<br/>';}
+	if($last_insert){$output.='Last Insert: '.esc_html($last_insert).'<br/>';}
 
 	// PHP Max Execution Time
 	$this_environment_php_execution_time=ini_get('max_execution_time');
 	if($this_environment_php_execution_time==0) {
 		$output.='Max PHP script execution time: not limited';
 	} else {
-		$output.='Max PHP script execution time: '.$this_environment_php_execution_time.' Seconds';
+		$output.='Max PHP script execution time: '.esc_html($this_environment_php_execution_time).' Seconds';
 	}
 
 	$output.='</p>';

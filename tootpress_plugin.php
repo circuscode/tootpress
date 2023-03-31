@@ -61,4 +61,37 @@ function tootpress_flag( $classes ) {
 }
 add_filter( 'body_class', 'tootpress_flag' );
 
+/**
+ * Returns allowed HTML tags
+ * 
+ * Used for escaping echos
+ * 
+ * @since 0.2
+ * 
+ * @return array Allowed HTML Tags
+ */
+
+function tootpress_escaping_allowed_html() {
+	return array(
+		'p' => array(),
+		'div' => array(
+			'class' => array(),
+		),
+		'img' => array(
+			'src' => array(),
+			'alt' => array(),
+		),
+        'br' => array(),
+		'strong' => array(),
+		'span' => array(
+			'class' => array(),
+		),
+		'a' => array(
+			'class' => array(),
+			'href' => array(),
+			'rel' => array(),
+		),
+	);
+}
+
 ?>
