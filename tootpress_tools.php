@@ -154,7 +154,7 @@ function tootpress_tools() {
 	<label for="copy-toots">Mastodon API Request</label>
 	</th>
 	<td>
-	<a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu&copytoots=true">Run</a>
+	<a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu&copytoots=true">Run</a>
 	</td>
 
 	<!-- Steady Fetch -->
@@ -163,7 +163,7 @@ function tootpress_tools() {
 	<label for="cron-newtoots">Steady Fetch</label>
 	</th>
 	<td>
-	<a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu&cronnewtoots=true">'.$button_newtoots_label.'</a>
+	<a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu&cronnewtoots=true">'.esc_html($button_newtoots_label).'</a>
 	</td>
 
 	<!-- Complete Archiv -->
@@ -172,7 +172,7 @@ function tootpress_tools() {
 	<label for="cron-alltoots">Complete Timeline</label>
 	</th>
 	<td>
-	<a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu&cronalltoots=true">'.$button_alltoots_label.'</a>
+	<a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu&cronalltoots=true">'.esc_html($button_alltoots_label).'</a>
 	</td>
 
 	<!-- Receive ID -->
@@ -181,7 +181,7 @@ function tootpress_tools() {
 	<label for="retrieve-id">Account ID</label>
 	</th>
 	<td>
-	<a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu&retrieveid=true">Retrieve</a>
+	<a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu&retrieveid=true">Retrieve</a>
 	</td>
 
 	<!-- Plugin Healthy Check -->
@@ -190,7 +190,7 @@ function tootpress_tools() {
 	<label for="plugin-healthy-check">Healthy Check</label>
 	</th>
 	<td>
-	<a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu&healthy=true">Show Results</a>
+	<a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu&healthy=true">Show Results</a>
 	</td>
 
 	<!-- Factory Settings -->
@@ -199,7 +199,7 @@ function tootpress_tools() {
 	<label for="factory-settings">Factory Settings</label>
 	</th>
 	<td>
-	<a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu&factorysettings=true">Reset</a>
+	<a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu&factorysettings=true">Reset</a>
 	</td>
 	
 	</table>';
@@ -214,7 +214,7 @@ function tootpress_tools() {
 
  function tootpress_tools_close() {
 	
-	echo '<p>&nbsp;<br/><a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-menu">Back to TootPress Tools</a></p>';
+	echo '<p>&nbsp;<br/><a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-menu">Back to TootPress Tools</a></p>';
 	
 }
 
@@ -246,7 +246,7 @@ function tootpress_tools() {
 	} else {
 		// TootPress is not ready to run
 		echo '<p>Request not possible.</p>';
-		echo tootpress_error_message_required_api_options_missing();
+		echo wp_kses( tootpress_error_message_required_api_options_missing(), tootpress_escaping_allowed_html() );
 	} 
 
 	tootpress_tools_close();
@@ -274,12 +274,12 @@ function tootpress_tools() {
 			update_option('tootpress_cron_newtoots_status','1');
 			$period=tootpress_get_custom_cron_period_in_minutes();
 			echo '<p>Cron was activated.<br/>';
-			echo 'Steady Fetch runs every '.$period.' Minutes.<br/>';
+			echo 'Steady Fetch runs every '.esc_html($period).' Minutes.<br/>';
 			echo 'New Toots will be added automatically.</p>';
 		} else {
 			// TootPress is not ready to run
 			echo '<p>Steady Fetch could not be activated.</p>';
-			echo tootpress_error_message_required_api_options_missing();
+			echo wp_kses( tootpress_error_message_required_api_options_missing(), tootpress_escaping_allowed_html() );
 		}
 
 	} else {
@@ -327,7 +327,7 @@ function tootpress_tools() {
 			} else {
 				// TootPress is not ready to run
 				echo '<p>Procedure could not be activated.</p>';
-				echo tootpress_error_message_required_api_options_missing();
+				echo wp_kses( tootpress_error_message_required_api_options_missing(), tootpress_escaping_allowed_html() );
 			}
 
 		}
@@ -356,10 +356,10 @@ function tootpress_tools() {
 		$mastodonid=$verifycrendentials['id'];
 		
 		echo '<p>Your Mastodon Account ID is the following.</p>';
-		echo '<p>'.$mastodonid.'</p>';
+		echo '<p>'.esc_html($mastodonid).'</p>';
 
 	} else {
-		echo tootpress_error_message_instance_andor_token_missing();
+		echo wp_kses( tootpress_error_message_instance_andor_token_missing(), tootpress_escaping_allowed_html() );
 	}
 
 	tootpress_tools_close();
@@ -377,7 +377,7 @@ function tootpress_healthy_check_load() {
 	echo '<h1 class="tootpress_tools_headline">TootPress › Healthy Check</h1>';
 	echo '<p class="tootpress_tools_description">Analysis<br/>&nbsp;</p>';
 	$health_status=tootpress_healthy_check();
-	echo $health_status;
+	echo wp_kses( $health_status, tootpress_escaping_allowed_html() );
 	tootpress_tools_close();
 
 }

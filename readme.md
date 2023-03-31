@@ -88,7 +88,7 @@ TootPress creates 2 folders within wp-content/uploads.
 * tootpress-mastodonapidata = Archive of the received Mastodon API data
 * tootpress-images = Toot Image Folder 
 
-## TootPress Cron Jobs @ WordPress
+## wpCrons
 
 * Steady Fetch (every 15 minutes, customizable)
 * Load Complete Timeline (every 5 minutes)
@@ -111,6 +111,7 @@ Following components of WordPress are used in TootPress.
 * URL Functions
 * File Functions
 * Content Functions
+* Escaping Functions
 
 ## Frequently Asked Questions
 
@@ -163,6 +164,14 @@ Hotfix and release branches will not be applied.
 This project is licensed under the GPL3 License.
 
 ## Changelog
+
+### 0.2 "Kate Bishop"
+
+* April 2023
+* New: Available in WordPress Plugin Directory
+* Added: Escaping Echos
+* Changed: CSS Enqueuing
+* Changed: Retrive Image Files via HTTP API
 
 ### 0.1 "Ms. Marvel"
 

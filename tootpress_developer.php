@@ -171,7 +171,7 @@ function tootpress_script_load() {
 
 function tootpress_tools_dev_close() {
 	
-	echo '<p>&nbsp;<br/><a class="button" href="'.admin_url().'tools.php?page=tootpress-tools-dev-menu">Back to TootPress Tools</a></p>';
+	echo '<p>&nbsp;<br/><a class="button" href="'.esc_url(admin_url()).'tools.php?page=tootpress-tools-dev-menu">Back to TootPress Tools</a></p>';
 	
 }
 
@@ -224,12 +224,12 @@ function tootpress_options_dev_content() {
 
  function tootpress_options_dev_display_latest_toot()
  {
-	 echo '<input class="regular-text" type="text" name="tootpress_latest_toot" id="tootpress_latest_toot" value="'. get_option('tootpress_latest_toot') .'"/>';
+	 echo '<input class="regular-text" type="text" name="tootpress_latest_toot" id="tootpress_latest_toot" value="' . esc_attr(get_option('tootpress_latest_toot')) .'"/>';
  }
 
  function tootpress_options_dev_display_oldest_toot()
  {
-	 echo '<input class="regular-text" type="text" name="tootpress_oldest_toot" id="tootpress_oldest_toot" value="'. get_option('tootpress_oldest_toot') .'"/>';
+	 echo '<input class="regular-text" type="text" name="tootpress_oldest_toot" id="tootpress_oldest_toot" value="'. esc_attr(get_option('tootpress_oldest_toot')) .'"/>';
  }
 
 /**

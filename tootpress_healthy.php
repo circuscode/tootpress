@@ -95,20 +95,22 @@ if (!defined('ABSPATH')) { exit; }
 	$output.='<br/>';
 
 	// Check: Are TootPress Folders in WordPress Uploads existing and writable?
-	if ( ! file_exists( tootpress_get_apidata_directory() ) ) {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-mastodonapidata not found.';
-	} elseif (is_writable(tootpress_get_apidata_directory())) {
-		$output.='Directory /wp-content/uploads/tootpress-mastodonapidata exists and is writable.';
+	$apidata_dir_path=tootpress_get_apidata_directory();
+	if ( ! file_exists( $apidata_dir_path ) ) {
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($apidata_dir_path).' not found.';
+	} elseif (is_writable($apidata_dir_path)) {
+		$output.='Directory '.esc_html($apidata_dir_path).' exists and is writable.';
   	} else {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-mastodonapidata is not writable.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($apidata_dir_path).' is not writable.';
   	}
 	$output.='<br/>';
-	if ( ! file_exists( tootpress_get_path_image_directory() ) ) {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-images not found.';
-	} elseif (is_writable(tootpress_get_path_image_directory())) {
-		$output.='Directory /wp-content/uploads/ tootpress-images exists and is writable.';
+	$image_dir_path=tootpress_get_path_image_directory();
+	if ( ! file_exists( $image_dir_path ) ) {
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($image_dir_path).' not found.';
+	} elseif (is_writable($image_dir_path)) {
+		$output.='Directory '.esc_html($image_dir_path).' exists and is writable.';
   	} else {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-images is not writable.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($image_dir_path).' is not writable.';
   	}
 	$output.='<br/>';
 
@@ -160,37 +162,37 @@ if (!defined('ABSPATH')) { exit; }
 
 	// Amount of previous API Requests
 	$amount_of_api_requests=tootpress_get_amount_of_api_requests();
-	$output.='Amount of Requests to Mastodon API: '.$amount_of_api_requests;
+	$output.='Amount of Requests to Mastodon API: '.esc_html($amount_of_api_requests);
 	$output.='<br/>';
 
 	// Amount of Toots in Database
 	$amount_of_toots=tootpress_get_amount_of_toots();
-	$output.='Amount of Toots in Database: '.$amount_of_toots;
+	$output.='Amount of Toots in Database: '.esc_html($amount_of_toots);
 	$output.='<br/>';
 
 	// Amount of Media in Database
 	$amount_of_media=tootpress_get_amount_of_media();
-	$output.='Amount of Media in Database: '.$amount_of_media;
+	$output.='Amount of Media in Database: '.esc_html($amount_of_media);
 	$output.='<br/>';
 
 	// Latest Toot
 	$latest_toot=tootpress_get_latest_toot();
-	if($latest_toot){$output.='Latest Toot: '.$latest_toot.'<br/>';}
+	if($latest_toot){$output.='Latest Toot: '.esc_html($latest_toot).'<br/>';}
 
 	// Oldest Toot
 	$oldest_toot=tootpress_get_oldest_toot();
-	if($oldest_toot){$output.='Oldest Toot: '.$oldest_toot.'<br/>';};
+	if($oldest_toot){$output.='Oldest Toot: '.esc_html($oldest_toot).'<br/>';};
 
 	// Last Insert
 	$last_insert=get_option('tootpress_last_insert');
-	if($last_insert){$output.='Last Insert: '.$last_insert.'<br/>';}
+	if($last_insert){$output.='Last Insert: '.esc_html($last_insert).'<br/>';}
 
 	// PHP Max Execution Time
 	$this_environment_php_execution_time=ini_get('max_execution_time');
 	if($this_environment_php_execution_time==0) {
 		$output.='Max PHP script execution time: not limited';
 	} else {
-		$output.='Max PHP script execution time: '.$this_environment_php_execution_time.' Seconds';
+		$output.='Max PHP script execution time: '.esc_html($this_environment_php_execution_time).' Seconds';
 	}
 
 	$output.='</p>';
