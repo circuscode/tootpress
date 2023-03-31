@@ -2,8 +2,8 @@
 Contributors: unmus
 Tags: mastodon, toots, microblogging, blog, fediverse
 Requires at least: 6.1
-Tested up to: 6.1.1
-Stable tag: 0.1
+Tested up to: 6.2
+Stable tag: 0.2
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -54,6 +54,13 @@ The length of the cron period in combination with the configuration of caching d
 No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
 
 == Changelog ==
+
+= 0.2 "Kate Bishop" =
+* April 2023 
+* New: Available in WordPress Plugin Directory
+* Added: Escaping Echos
+* Changed: CSS Enqueuing
+* Changed: Retrive Image Files via HTTP API
 
 = 0.1 "Ms. Marvel" =
 * March 2023 

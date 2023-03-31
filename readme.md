@@ -111,6 +111,7 @@ Following components of WordPress are used in TootPress.
 * URL Functions
 * File Functions
 * Content Functions
+* Escaping Functions
 
 ## Frequently Asked Questions
 
@@ -163,6 +164,14 @@ Hotfix and release branches will not be applied.
 This project is licensed under the GPL3 License.
 
 ## Changelog
+
+### 0.2 "Kate Bishop"
+
+* April 2023
+* New: Available in WordPress Plugin Directory
+* Added: Escaping Echos
+* Changed: CSS Enqueuing
+* Changed: Retrive Image Files via HTTP API
 
 ### 0.1 "Ms. Marvel"
 
