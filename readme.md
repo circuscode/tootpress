@@ -88,7 +88,7 @@ TootPress creates 2 folders within wp-content/uploads.
 * tootpress-mastodonapidata = Archive of the received Mastodon API data
 * tootpress-images = Toot Image Folder 
 
-## TootPress Cron Jobs @ WordPress
+## wpCrons
 
 * Steady Fetch (every 15 minutes, customizable)
 * Load Complete Timeline (every 5 minutes)
