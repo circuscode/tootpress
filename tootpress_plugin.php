@@ -17,15 +17,16 @@ if (!defined('ABSPATH')) { exit; }
  */
 
 function tootpress_blogs_css() {
+	// Load CSS only on Toots Page
 	if ( tootpress_toot_here() ){
+		// Load CSS only if Option is set
 		if(get_option('tootpress_css')) {
-			$add_css='<link rel="stylesheet" id="mathilda-css" href="'. plugins_url() .'/tootpress/tootpress_toots.css" type="text/css" media="all">';
-			echo $add_css;
+			wp_register_style( 'tootpress', plugins_url( 'tootpress_toots.css' ) );
+			wp_enqueue_style( 'tootpress' );
 		}
 	}
 }
-
-add_action('wp_head','tootpress_blogs_css');
+add_action('wp_enqueue_scripts','tootpress_blogs_css');
 
 /**
  * Adds Admin CSS
@@ -33,11 +34,15 @@ add_action('wp_head','tootpress_blogs_css');
  * @since 0.1
  */
 
- function tootpress_admin_css() {
-	$add_css='<link rel="stylesheet" id="tootpress-css" href="'. plugins_url() .'/tootpress/tootpress_tools.css" type="text/css" media="all">';
-	echo $add_css;
+ function tootpress_admin_css($hook) {
+	// Load CSS only on Toots Tools Page
+	if ( 'tools_page_tootpress-tools-menu' != $hook ) {
+        return;
+    }
+	wp_register_style( 'tootpress', plugins_url( 'tootpress_tools.css' ) );
+	wp_enqueue_style( 'tootpress' );
 }
-add_action( 'admin_head', 'tootpress_admin_css' );
+add_action( 'admin_enqueue_scripts', 'tootpress_admin_css' );
 
 /**
  * Adds Mathilda Flag
