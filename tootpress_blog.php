@@ -34,7 +34,7 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media )
 	$toot_html.='<div class="tootpress-toot"/>';
 
 	// Toot Symbol
-	$toot_html.='<img class="tootpress-toot-symbol" src="'.plugins_url().'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	$toot_html.='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
 
 	// Toot Date
 	if(tootpress_is_language_german()) {
@@ -43,15 +43,15 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media )
 		$date=tootpress_convert_mysqldate_to_international_format($date);
 	}
 
-	$toot_html.='<div class="toot-date"><p>'.$date.'</p></div>';
+	$toot_html.='<div class="toot-date"><p>'.esc_html($date).'</p></div>';
 
 	// Toot Content
 	$content=tootpress_remove_target_blank($content);
-	$toot_html.='<div class="toot-content">'.$content.'</div>';
+	$toot_html.='<div class="toot-content">'.wp_kses($content, tootpress_escaping_allowed_html() ).'</div>';
 
 	// Toot Image
 	if($media){
-		$toot_html.=tootpress_paint_image($mastodon_id);
+		$toot_html.=wp_kses(tootpress_paint_image($mastodon_id), tootpress_escaping_allowed_html() );
 	}
 
 	// Toot End

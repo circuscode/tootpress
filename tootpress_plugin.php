@@ -74,10 +74,22 @@ add_filter( 'body_class', 'tootpress_flag' );
 function tootpress_escaping_allowed_html() {
 	return array(
 		'p' => array(),
+		'div' => array(
+			'class' => array(),
+		),
+		'img' => array(
+			'src' => array(),
+			'alt' => array(),
+		),
         'br' => array(),
 		'strong' => array(),
 		'span' => array(
 			'class' => array(),
+		),
+		'a' => array(
+			'class' => array(),
+			'href' => array(),
+			'rel' => array(),
 		),
 	);
 }
