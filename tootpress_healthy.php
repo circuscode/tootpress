@@ -95,20 +95,22 @@ if (!defined('ABSPATH')) { exit; }
 	$output.='<br/>';
 
 	// Check: Are TootPress Folders in WordPress Uploads existing and writable?
-	if ( ! file_exists( tootpress_get_apidata_directory() ) ) {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-mastodonapidata not found.';
-	} elseif (is_writable(tootpress_get_apidata_directory())) {
-		$output.='Directory /wp-content/uploads/tootpress-mastodonapidata exists and is writable.';
+	$apidata_dir_path=tootpress_get_apidata_directory();
+	if ( ! file_exists( $apidata_dir_path ) ) {
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($apidata_dir_path).' not found.';
+	} elseif (is_writable($apidata_dir_path)) {
+		$output.='Directory '.esc_html($apidata_dir_path).' exists and is writable.';
   	} else {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-mastodonapidata is not writable.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($apidata_dir_path).' is not writable.';
   	}
 	$output.='<br/>';
-	if ( ! file_exists( tootpress_get_path_image_directory() ) ) {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-images not found.';
-	} elseif (is_writable(tootpress_get_path_image_directory())) {
-		$output.='Directory /wp-content/uploads/ tootpress-images exists and is writable.';
+	$image_dir_path=tootpress_get_path_image_directory();
+	if ( ! file_exists( $image_dir_path ) ) {
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($image_dir_path).' not found.';
+	} elseif (is_writable($image_dir_path)) {
+		$output.='Directory '.esc_html($image_dir_path).' exists and is writable.';
   	} else {
-		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory /wp-content/uploads/tootpress-images is not writable.';
+		$output.='<span class="tootpress-healtycheck-error">&nbsp;Error:&nbsp;</span> Directory '.esc_html($image_dir_path).' is not writable.';
   	}
 	$output.='<br/>';
 
