@@ -25,50 +25,7 @@ TootPress brings your data back and copies your toots from Mastodon to WordPress
 
 [Here!](https://www.unmus.de/troets/)
 
-= Related Links =
-
-* [Source Code @ GitHub](https://github.com/circuscode/tootpress)
-
-== Installation ==
-
-1. Download the plugin from the WordPress Plugin Repository
-2. Activate the plugin in WordPress
-3. Follow the setup manual
-
-== Frequently Asked Questions ==
-
-= Why are boosts, replys and private toots not supported? =
-
-Boosts are not your toots. Replys are communication, but not micro-posts. Private Toots should stay private.
-
-= How does TootPress handle the canonical URL? =
-
-TootPress does not modify the existing canonical url handling in WordPress. If you want to create a unique canonical url for each TootPress subpage, you must control that with a SEO plugin. This becomes relevant when your toots must be distributed over several pages and the plugin starts the paging process.
-
-= What have to be considered with the usage of caching plugins? =
-
-The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page containing the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin, which then must be processed by your caching plugin.
-
-= Does TootPress support WordPress Multisite? =
-
-No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
-
-== Changelog ==
-
-= 0.2 "Kate Bishop" =
-* April 2023 
-* New: Available in WordPress Plugin Directory
-* Added: Escaping Echos
-* Changed: CSS Enqueuing
-* Changed: Retrive Image Files via HTTP API
-
-= 0.1 "Ms. Marvel" =
-* March 2023 
-* Initial Release
-
-== Configuration ==
-
-= Setup Manual =
+== Setup Manual ==
 
 1. Create an Application on your Mastodon Instance to get API Access (under Settings/Development)
 2. Restrict the Authorization of the created Application to Read (all data)
@@ -81,7 +38,7 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 9. Activate Steady Fetch
 10. That's it!
 
-= Instructions for Use =
+== Instructions for Use ==
 
 * You find TootPress in WordPress in the area of Settings and Tools
 * Steady Fetch activates the automatic and regular load of new toots
@@ -93,6 +50,8 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 * You can run a Mastodon API Request everytime at your own with the eponymous function
 * There is no prescribed order for the execution of Steady Fetch, Complete Timeline or manual requests
 * If problems occur, TootPress provides a Healthy Check
+
+== Further Information ==
 
 = Supported Toot Objects =
 
@@ -142,3 +101,44 @@ TootPress creates 2 folders within wp-content/uploads.
 = TootPress API =
 
 WordPress Action: tootpress_toots_update (fired on toot update)
+
+= Related Links =
+
+* [Source Code @ GitHub](https://github.com/circuscode/tootpress)
+
+== Screenshots ==
+
+1. Toots in the Blog
+2. Plugin Options
+3. Plugin Features
+
+== Frequently Asked Questions ==
+
+= Why are boosts, replys and private toots not supported? =
+
+Boosts are not your toots. Replys are communication, but not micro-posts. Private Toots should stay private.
+
+= How does TootPress handle the canonical URL? =
+
+TootPress does not modify the existing canonical url handling in WordPress. If you want to create a unique canonical url for each TootPress subpage, you must control that with a SEO plugin. This becomes relevant when your toots must be distributed over several pages and the plugin starts the paging process.
+
+= What have to be considered with the usage of caching plugins? =
+
+The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page containing the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin, which then must be processed by your caching plugin.
+
+= Does TootPress support WordPress Multisite? =
+
+No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
+
+== Changelog ==
+
+= 0.2 "Kate Bishop" =
+* April 2023 
+* New: Available in WordPress Plugin Directory
+* Added: Escaping Echos
+* Changed: CSS Enqueuing
+* Changed: Retrive Image Files via HTTP API
+
+= 0.1 "Ms. Marvel" =
+* March 2023 
+* Initial Release
