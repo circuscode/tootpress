@@ -20,7 +20,7 @@ TootPress brings your data back and copies your toots from Mastodon to WordPress
 2. Rename the downloaded folder to "tootpress"
 2. Upload the folder to the WordPress Plugin Directory
 3. Activate the plugin in WordPress
-4. Follow the configuration manual
+4. Follow the configuration steps below
 
 ## Configuration
 
@@ -77,13 +77,17 @@ Following toot types are excluded from the data transfer.
 * Replys
 * Private Toots
 
+## Architecture
+
+Data storage and process logic is separated from the WordPress Framework. The toots are not saved in the table wp_posts. And TootPress is not registering a custom post type for the toots as well.
+
 ## CSS classes
 
 TootPress comes with basic CSS Styles. For best fit it is required to add additional styles in your theme. All TootPress UI elements can be addressed with individual CSS selectors. Please use the browser development tools to find the right classes. 
 
 ## Data & Files
 
-TootPress creates 2 folders within wp-content/uploads.
+TootPress creates 2 folders within the WordPress Uploads Directory.
 
 * tootpress-mastodonapidata = Archive of the received Mastodon API data
 * tootpress-images = Toot Image Folder 
@@ -147,7 +151,7 @@ This repository follows the git-flow workflow to a large extent.
 * feature branches contain dedicated features in development
 * bugfix branches contain dedicated bugfixes in development
 
-Hotfix and release branches will not be applied.
+Hotfix and release branches will not be applied in most cases.
 
 ## Live Demo
 
@@ -162,6 +166,10 @@ Hotfix and release branches will not be applied.
 ## License
 
 This project is licensed under the GPL3 License.
+
+## Related Links
+
+* [TootPress @ WordPress Plugin Directory](https://wordpress.org/plugins/tootpress/)
 
 ## Changelog
 
