@@ -83,6 +83,10 @@ Following toot types are excluded from the data transfer.
 * Replys
 * Private Toots
 
+= Architecture =
+
+Data storage and process logic is separated from the WordPress Framework. The toots are not saved in the table wp_posts. And TootPress is not registering a custom post type for the toots as well.
+
 = CSS classes =
 
 TootPress comes with basic CSS Styles. For best fit it is required to add additional styles in your theme. All TootPress UI elements can be addressed with individual CSS selectors. Please use the browser development tools to find the right classes. 
@@ -94,7 +98,7 @@ TootPress creates 2 folders within the WordPress Uploads Directory.
 * tootpress-mastodonapidata = Archive of the received Mastodon API data
 * tootpress-images = Toot Image Folder 
 
-= Cron Jobs =
+= wpCrons =
 
 * Steady Fetch (every 15 minutes, customizable)
 * Load Complete Timeline (every 5 minutes)
