@@ -13,7 +13,7 @@ TootPress copies your toots from Mastodon to WordPress.
 
 TootPress brings your data back and copies your toots from Mastodon to WordPress continuously. The toots will be saved in the WordPress database and can be displayed on the blog chronologically (but do not have to). Indeed, Mastodon is also blogging, micro-blogging so to speak.  
 
-= Functions =
+= Features =
 
 * Copy your toots back
 * Copy your tooted images back
@@ -27,16 +27,17 @@ TootPress brings your data back and copies your toots from Mastodon to WordPress
 
 == Setup Manual ==
 
-1. Create an Application on your Mastodon Instance to get API Access (under Settings/Development)
-2. Restrict the Authorization of the created Application to Read (all data)
-3. Maintain Mastodon Instance and Access Token in the TootPress Settings
-4. Retrieve your Account ID (in WordPress under Tools/Toots)
-5. Maintain the Account ID in the TootPress Settings
-6. Create a new WordPress Page and add the Page to your Menu
-7. Maintain the Page ID in the TootPress Settings (you find the Page ID in URL of the Browser when editing the Page in WordPress)
-8. Run Mastodon API Request once (in WordPress under Tools/Toots)
-9. Activate Steady Fetch
-10. That's it!
+1. Install the Plugin in WordPress
+2. Create an Application on your Mastodon Instance to get API Access (under Settings/Development)
+3. Restrict the Authorization of the created Application to Read (all data)
+4. Maintain Mastodon Instance and Access Token in the TootPress Settings
+5. Retrieve your Account ID (in WordPress under Tools/Toots)
+6. Maintain the Account ID in the TootPress Settings
+7. Create a new WordPress Page and add the Page to your Menu
+8. Maintain the Page ID in the TootPress Settings (you find the Page ID in URL of the Browser when editing the Page in WordPress)
+9. Run Mastodon API Request once (in WordPress under Tools/Toots)
+10. Activate Steady Fetch
+11. That's it!
 
 == Instructions for Use ==
 
@@ -88,7 +89,7 @@ TootPress comes with basic CSS Styles. For best fit it is required to add additi
 
 = Data & Files =
 
-TootPress creates 2 folders within wp-content/uploads.
+TootPress creates 2 folders within the WordPress Uploads Directory.
 
 * tootpress-mastodonapidata = Archive of the received Mastodon API data
 * tootpress-images = Toot Image Folder 
