@@ -11,7 +11,7 @@ TootPress copies your toots from Mastodon to WordPress.
 
 == Description ==
 
-TootPress brings your data back and copies your toots from Mastodon to WordPress continuously. The toots will be saved in the WordPress database and can be displayed on the blog chronologically (but do not have to). Indeed, Mastodon is also blogging, micro-blogging so to speak.  
+TootPress copies your toots from Mastodon to WordPress continuously. The toots can be displayed chronologically in the blog, making your timeline accessible to other people outside of Mastodon. In addition, you regain ownership of your own data back. 
 
 = Features =
 
@@ -110,6 +110,7 @@ WordPress Action: tootpress_toots_update (fired on toot update)
 = Related Links =
 
 * [Source Code @ GitHub](https://github.com/circuscode/tootpress)
+* [Official Plugin Page](https://www.unmus.de/tootpress/) (German)
 
 == Screenshots ==
 
