@@ -3,7 +3,7 @@ Contributors: unmus
 Tags: mastodon, toots, microblogging, blog, fediverse
 Requires at least: 6.1
 Tested up to: 6.2
-Stable tag: 0.2
+Stable tag: 0.2.1
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -138,6 +138,11 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 
 == Changelog ==
 
+= 0.2.1 =
+
+* April 2023
+* Bugfix: Label for Option Nav Standard will displayed again
+
 = 0.2 "Kate Bishop" =
 * April 2023 
 * New: Available in WordPress Plugin Directory
@@ -148,3 +153,8 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 = 0.1 "Ms. Marvel" =
 * March 2023 
 * Initial Release
+
+== Upgrade Notice ==
+
+= 0.2.1 =
+This version includes bugfixing only.

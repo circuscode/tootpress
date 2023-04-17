@@ -23,19 +23,16 @@ if (!defined('ABSPATH')) { exit; }
 	$tootpress_previous_version = get_option('tootpress_plugin_version');
 
 	/* Update Process Version 0.2 */
-
-	/*
-
 	if($tootpress_previous_version==1) {
-		
-		// Code Here
-
 		update_option('tootpress_plugin_version', "2");
-		}
+	}
 
-	*/
+	/* Update Process Version 0.2.1 */
+	if($tootpress_previous_version==2) {
+		update_option('tootpress_plugin_version', "3");
+	}
 
 }
-// add_action( 'plugins_loaded', 'tootpress_update' );
+add_action( 'plugins_loaded', 'tootpress_update' );
 
 ?>

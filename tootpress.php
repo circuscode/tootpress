@@ -3,7 +3,7 @@
 /*
 Plugin Name:  TootPress
 Description:  TootPress copies your Toots from Mastodon to WordPress.
-Version:	  0.2
+Version:	  0.2.1
 Author:       Marco Hitschler
 Author URI:   https://www.unmus.de/
 License:      GPL3

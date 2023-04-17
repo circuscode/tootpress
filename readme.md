@@ -174,6 +174,11 @@ This project is licensed under the GPL3 License.
 
 ## Changelog
 
+### 0.2.1
+
+* April 2023
+* Bugfix: Label for Option Nav Standard will displayed again
+
 ### 0.2 "Kate Bishop"
 
 * April 2023
