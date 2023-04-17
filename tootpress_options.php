@@ -85,7 +85,7 @@ function tootpress_options_display_cron_period()
 function tootpress_options_display_navigation()
 {
 	echo '<input type="radio" id="tootpress_navigation_standard" name="tootpress_navigation" value="standard" ' .  checked('standard', esc_attr(get_option('tootpress_navigation')), false) . '/>'; 
-	 '<label for="tootpress_navigation_standard">Standard</label>';
+	echo '<label for="tootpress_navigation_standard">Standard</label>';
 	echo '<br/>&nbsp;<br/>';
 	echo '<input type="radio" id="tootpress_navigation_numbers" name="tootpress_navigation" value="numbers" ' .  checked('numbers', esc_attr(get_option('tootpress_navigation')), false) . '/>'; 
 	echo '<label for="tootpress_navigation_numbers">Numbers</label>';
