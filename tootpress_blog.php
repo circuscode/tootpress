@@ -71,28 +71,48 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media )
 
 function tootpress_paint_image($tootid){
 
-	// Get Image from Database
+	// Get Images from Database
 	$toot_image=array();
 	$toot_image=tootpress_get_media_from_database($tootid);
 	$image_html='';
 
-	// Image Content
-	$image_html.='<div class="toot-image">';
-	$image_html.='<img ';
-	$image_html.='src="';
-	$image_html.=tootpress_get_url_image_directory();
-	$image_html.=$toot_image[0]['attachment_file'];
-	$image_html.='" ';
-	$image_html.='alt="';
-	$image_html.=$toot_image[0]['attachment_description'];
-	//$image_html.='" ';
-	//$image_html.='width="';
-	//$image_html.=$toot_image[0]['attachment_width'];
-	//$image_html.='" ';
-	//$image_html.='height="';
-	//$image_html.=$toot_image[0]['attachment_height'];
-	$image_html.='" />';
-	$image_html.='</div>';
+	// Amount of Images
+	$amount_of_images=sizeof($toot_image);
+
+	for($i=0;$i<$amount_of_images;$i++) {
+
+		// Image Content
+		$image_html.='<div class="toot-image ';
+
+		// Classes
+		if($amount_of_images>1) {
+			// Galleries
+			$image_html.='toot-image-gallery ';
+			$image_html.='toot-image-gallery-'.$amount_of_images.' ';
+			$image_html.='toot-image-'.($i+1);
+		} else {
+			// Single Images
+			$image_html.='toot-image-single ';
+		}
+		
+		$image_html.='">';
+		$image_html.='<img ';
+		$image_html.='src="';
+		$image_html.=tootpress_get_url_image_directory();
+		$image_html.=$toot_image[$i]['attachment_file'];
+		$image_html.='" ';
+		$image_html.='alt="';
+		$image_html.=$toot_image[$i]['attachment_description'];
+		//$image_html.='" ';
+		//$image_html.='width="';
+		//$image_html.=$toot_image[0]['attachment_width'];
+		//$image_html.='" ';
+		//$image_html.='height="';
+		//$image_html.=$toot_image[0]['attachment_height'];
+		$image_html.='" />';
+		$image_html.='</div>';
+
+	}
 
 	return $image_html;
 }
