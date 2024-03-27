@@ -34,13 +34,16 @@ add_action('wp_enqueue_scripts','tootpress_blogs_css');
  * @since 0.1
  */
 
- function tootpress_admin_css($hook) {
-	// Load CSS only on Toots Tools Page
-	if ( 'tools_page_tootpress-tools-menu' != $hook ) {
-        return;
-    }
-	wp_register_style( 'tootpress', plugins_url( 'tootpress_tools.css' ) );
-	wp_enqueue_style( 'tootpress' );
+function tootpress_admin_css($hook) {
+
+	// Load CSS only on Toots Tools Page or Dashboard
+	if ( 'tools_page_tootpress-tools-menu' == $hook OR 'index.php' == $hook) {
+
+		wp_register_style( 'tootpress', plugins_url( 'tootpress/tootpress_tools.css' ) );
+		wp_enqueue_style( 'tootpress' );
+
+	}
+
 }
 add_action( 'admin_enqueue_scripts', 'tootpress_admin_css' );
 
