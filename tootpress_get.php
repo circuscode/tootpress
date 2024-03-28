@@ -146,6 +146,22 @@ if (!defined('ABSPATH')) { exit; }
 }
 
 /**
+ * Get Backlink Option
+ * 
+ * @since 0.3
+ * 
+ * @return int Backlink Option
+ */
+
+ function tootpress_get_backlink_option() {
+
+	$backlink=get_option('tootpress_backlink');
+
+	return $backlink;
+
+}
+
+/**
  * Get Page Slug of TootPress Page
  * 
  * @since 0.1

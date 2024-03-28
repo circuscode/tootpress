@@ -233,6 +233,11 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
 /**
  * Validates the CSS Option
  * 
+ * Checkbox Label: Deactivate CSS
+ * What is the meaning of the values?
+ * 1 = No (Plugin CSS is used)
+ * 0 = Yes (Plugin CSS is not used)
+ * 
  * @since 0.1
  * 
  * @param string Input Field CSS Option
@@ -247,6 +252,31 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
         $output=0;
     }
   
+    return $output;
+}
+
+/**
+ * Validates the Backlink Option
+ * 
+ * Checkbox Label: Activate Backlink
+ * What is the meaning of the values?
+ * 1 = Yes
+ * 0 = No
+ * 
+ * @since 0.3
+ * 
+ * @param string Input Field Backlink Option
+ * @return int Reliable Backlink Option
+ */
+
+ function tootpress_validate_backlink($input) {
+
+    if ($input==0) {
+        $output=0;
+    } else {
+        $output=1;
+    }
+
     return $output;
 }
 

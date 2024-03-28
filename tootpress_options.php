@@ -96,6 +96,11 @@ function tootpress_options_display_css()
 	echo '<input type="checkbox" name="tootpress_css" value="1" ' .  checked(1, esc_attr(tootpress_get_css_option()), false) . '/>'; 
 }	
 
+function tootpress_options_display_backlink()
+{
+	echo '<input type="checkbox" name="tootpress_backlink" value="1" ' .  checked(1, esc_attr(tootpress_get_backlink_option()), false) . '/>'; 
+}	
+
 /**
  * Displays the Chapter Descriptions.
  * 
@@ -109,7 +114,7 @@ function tootpress_options_display_plugin_description()
 { echo '<p>Basic Settings</p>'; }
 
 function tootpress_options_display_userinterface_description()
-{ echo '<p>Expert Settings</p>'; }
+{ echo '<p>FrontEnd Settings</p>'; }
 
 function tootpress_options_display_expert_description()
 { echo '<p>Process Settings</p>'; }
@@ -159,9 +164,11 @@ function tootpress_options_userinterface_display()
 	
 	add_settings_field("tootpress_amount_toots_page", "Amount Toots Page", "tootpress_options_display_amount_toots_page", "tootpress-options", "userinterface_settings_section");
 	add_settings_field("tootpress_navigation", "Navigation", "tootpress_options_display_navigation", "tootpress-options", "userinterface_settings_section");
+	add_settings_field("tootpress_backlink", "Activate Backlink", "tootpress_options_display_backlink", "tootpress-options", "userinterface_settings_section");
 	
 	register_setting("tootpress_options", "tootpress_amount_toots_page", "tootpress_validate_amount_toots_page");
 	register_setting("tootpress_options", "tootpress_navigation", "tootpress_validate_navigation");
+	register_setting("tootpress_options", "tootpress_backlink", "tootpress_validate_backlink");
 
 }
 
@@ -172,7 +179,7 @@ function tootpress_options_expert_display()
 	
 	add_settings_section("expert_settings_section", "Expert", "tootpress_options_display_expert_description", "tootpress-options");
 	
-	add_settings_field("tootpress_css", "Deactivate CSS", "tootpress_options_display_css", "tootpress-options", "expert_settings_section");;
+	add_settings_field("tootpress_css", "Deactivate CSS", "tootpress_options_display_css", "tootpress-options", "expert_settings_section");
 	add_settings_field("tootpress_cron_period", "Period", "tootpress_options_display_cron_period", "tootpress-options", "expert_settings_section");
 	
 	register_setting("tootpress_options", "tootpress_css", "tootpress_validate_css");

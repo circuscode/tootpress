@@ -42,6 +42,7 @@ if (!defined('ABSPATH')) { exit; }
     add_option('tootpress_amount_toots_page',"50");
     add_option('tootpress_navigation',"standard");
     add_option('tootpress_css','1');
+    add_option('tootpress_backlink','0');
     add_option('tootpress_developer',"0");
     }
 
@@ -87,6 +88,7 @@ function tootpress_delete () {
     delete_option('tootpress_amount_toots_page');
     delete_option('tootpress_navigation');
     delete_option('tootpress_css');
+    delete_option('tootpress_backlink');
     delete_option('tootpress_developer');
     }
 
