@@ -19,10 +19,13 @@ if (!defined('ABSPATH')) { exit; }
  * @param date Toot Date
  * @param string Toot Content
  * @param int Media Flag
+ * @param string Mastodon Instance
+ * @param string Mastodon Account
+ * @param int Backlink Flag
  * @return string html
  */
 
-function tootpress_paint_toot( $mastodon_id, $date, $content, $media )
+function tootpress_paint_toot( $mastodon_id, $date, $content, $media , $instance, $account, $backlink)
 {
 
 	$toot_html='';
@@ -33,8 +36,8 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media )
 	// Toot Start
 	$toot_html.='<div class="tootpress-toot"/>';
 
-	// Toot Symbol
-	$toot_html.='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	// Toot Elephant
+	$toot_html.=tootpress_paint_elephant( $instance, $account, $mastodon_id,$backlink);
 
 	// Toot Date
 	if(tootpress_is_language_german()) {
@@ -95,6 +98,40 @@ function tootpress_paint_image($tootid){
 	$image_html.='</div>';
 
 	return $image_html;
+}
+
+/**
+ * Creates the Elephant
+ * 
+ * @since 0.3
+ * 
+ * @param string Mastodon Instance
+ * @param string Mastodon Account
+ * @param int Mastodon Toot ID
+ * @param int Backlink Option
+ * @return string html
+ */
+
+function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink) {
+
+	$elephant_html='';
+	$url='https://'.$instance.'/@'.$account.'/'.$mastodon_id;
+
+	if($backlink) {
+		$elephant_html.='<a href="';
+		$elephant_html.=$url;
+		$elephant_html.='" class="toot-backlink"/>';
+	}
+
+	// The Elephant
+	$elephant_html.='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+
+	if($backlink) {
+		$elephant_html.='</a>';
+	}
+
+	return $elephant_html;
+
 }
 
 ?>
