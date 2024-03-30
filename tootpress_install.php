@@ -30,6 +30,7 @@ if (!defined('ABSPATH')) { exit; }
     add_option('tootpress_mastodon_instance',"");
     add_option('tootpress_mastodon_oauth_access_token',"");
     add_option('tootpress_mastodon_account_id',"");
+    add_option('tootpress_mastodon_account_name',"");
     add_option('tootpress_mastodon_amount_of_requests',"0");
     add_option('tootpress_latest_toot',"");
     add_option('tootpress_oldest_toot',"");
@@ -76,6 +77,7 @@ function tootpress_delete () {
     delete_option('tootpress_mastodon_instance');
     delete_option('tootpress_mastodon_oauth_access_token');
     delete_option('tootpress_mastodon_account_id');
+    delete_option('tootpress_mastodon_account_name');
     delete_option('tootpress_mastodon_amount_of_requests');
     delete_option('tootpress_latest_toot');
     delete_option('tootpress_oldest_toot');

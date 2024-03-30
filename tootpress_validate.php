@@ -98,17 +98,25 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
             if(!($accountid==$response_accountid)) {
                 add_settings_error( 'tootpress-options', 'invalid-accountid', 'Account ID: Account ID is not in scope of the OAUTH Access Token' );
                 $accountid='';
+            } else {
+                // Retrieve Account Name
+                tootpress_retrieve_mastodon_account();
             }
 
         } else {
 
             // If no AuthCode is maintained,
-            // UserID will be removed to prevent inconsistant values in TootPress
+            // UserID will be removed to prevent inconsistant values
             add_settings_error( 'tootpress-options', 'invalid-accountid', 'Account ID: Account ID is linked to OAUTH Access Token. Value removed.' );
             $accountid='';
 
         }
 
+    }
+
+    // Remove Account Name (if verified Account ID is missing)
+    if($accountid=='') { 
+        update_option('tootpress_mastodon_account_name',"");
     }
 
     return $accountid;
