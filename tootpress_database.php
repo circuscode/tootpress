@@ -116,6 +116,7 @@ function tootpress_restore_factory_settings() {
     update_option('tootpress_mastodon_instance',"");
     update_option('tootpress_mastodon_oauth_access_token',"");
     update_option('tootpress_mastodon_account_id',"");
+	update_option('tootpress_mastodon_account_name',"");
     update_option('tootpress_mastodon_amount_of_requests',"0");
     update_option('tootpress_latest_toot',"");
     update_option('tootpress_oldest_toot',"");
@@ -128,6 +129,7 @@ function tootpress_restore_factory_settings() {
     update_option('tootpress_amount_toots_page',"50");
 	update_option('tootpress_navigation',"standard");
 	update_option('tootpress_css',"1");
+	update_option('tootpress_backlink','0');
     update_option('tootpress_developer',"0");
 	
 	global $wpdb;
