@@ -21,7 +21,7 @@ function tootpress_blogs_css() {
 	if ( tootpress_toot_here() ){
 		// Load CSS only if Option is set
 		if(get_option('tootpress_css')) {
-			wp_register_style( 'tootpress', plugins_url( 'tootpress_toots.css' ) );
+			wp_register_style( 'tootpress', plugins_url( 'tootpress/tootpress_toots.css' ) );
 			wp_enqueue_style( 'tootpress' );
 		}
 	}
@@ -43,7 +43,6 @@ function tootpress_admin_css($hook) {
 		wp_enqueue_style( 'tootpress' );
 
 	}
-
 }
 add_action( 'admin_enqueue_scripts', 'tootpress_admin_css' );
 
