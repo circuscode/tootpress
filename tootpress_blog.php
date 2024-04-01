@@ -139,7 +139,7 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 
 	if($backlink) {
 		$elephant_html.='<a href="';
-		$elephant_html.=$url;
+		$elephant_html.=esc_url($url);
 		$elephant_html.='" class="toot-backlink"/>';
 	}
 
