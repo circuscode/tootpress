@@ -32,6 +32,16 @@ if (!defined('ABSPATH')) { exit; }
 		update_option('tootpress_plugin_version', "3");
 	}
 
+	/* Update Process Version 0.3 */
+	if($tootpress_previous_version==3) {
+		update_option('tootpress_plugin_version', "4");
+		add_option('tootpress_backlink','0');
+		add_option('tootpress_mastodon_account_name',"");
+		if(tootpress_ready_to_retrieve_toots_from_mastodon_api()) {
+			tootpress_retrieve_mastodon_account();
+		}
+	}
+	
 }
 add_action( 'plugins_loaded', 'tootpress_update' );
 

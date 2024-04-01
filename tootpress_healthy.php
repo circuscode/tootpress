@@ -121,6 +121,16 @@ if (!defined('ABSPATH')) { exit; }
   	} else {
 		$output.='<span class="mathilda-healtycheck-error">&nbsp;Error:&nbsp;</span> PHP option allow_url_fopen is set to FALSE (0) on the webhosting environment. Please change to TRUE (1).';
   	}
+	$output.='<br/>';
+
+	// Check: Mastodon Account Name received
+	// Required to build the backlinks
+	$mastodon_account_name=tootpress_get_mastodon_account_name();
+	if ($mastodon_account_name) {
+		$output.='Mastodon Account Name has been retrieved: @'.$mastodon_account_name;
+  	} else {
+		$output.='<span class="tootpress-healtycheck-warning">&nbsp;Warning:&nbsp;</span> Mastodon Account Name could not be retrieved.';
+  	}
 	$output.='</p>';
 
 	/* 
