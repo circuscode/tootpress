@@ -35,6 +35,7 @@ require_once('tootpress_url.php');
 require_once('tootpress_loop.php');
 require_once('tootpress_blog.php');
 require_once('tootpress_menu.php');
+require_once('tootpress_widgets.php');
 require_once('tootpress_notification.php');
 require_once('tootpress_get.php');
 require_once('tootpress_set.php');
