@@ -164,7 +164,7 @@ function tootpress_options_userinterface_display()
 	
 	add_settings_field("tootpress_amount_toots_page", "Amount Toots Page", "tootpress_options_display_amount_toots_page", "tootpress-options", "userinterface_settings_section");
 	add_settings_field("tootpress_navigation", "Navigation", "tootpress_options_display_navigation", "tootpress-options", "userinterface_settings_section");
-	add_settings_field("tootpress_backlink", "Activate Backlink", "tootpress_options_display_backlink", "tootpress-options", "userinterface_settings_section");
+	add_settings_field("tootpress_backlink", "Backlinks", "tootpress_options_display_backlink", "tootpress-options", "userinterface_settings_section");
 	
 	register_setting("tootpress_options", "tootpress_amount_toots_page", "tootpress_validate_amount_toots_page");
 	register_setting("tootpress_options", "tootpress_navigation", "tootpress_validate_navigation");
