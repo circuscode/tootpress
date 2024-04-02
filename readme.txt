@@ -2,7 +2,7 @@
 Contributors: unmus
 Tags: mastodon, toots, microblogging, blog, fediverse
 Requires at least: 6.1
-Tested up to: 6.4.3
+Tested up to: 6.5
 Stable tag: 0.3
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
