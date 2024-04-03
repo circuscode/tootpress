@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) { exit; }
 
 	// Initialize Settings
 
-    add_option('tootpress_plugin_version', "1");
+    add_option('tootpress_plugin_version', "4");
     add_option('tootpress_database_version', "1");
 	add_option('tootpress_active', "1");
     add_option('tootpress_mastodon_instance',"");
