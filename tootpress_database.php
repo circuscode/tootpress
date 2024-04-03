@@ -110,7 +110,7 @@ function tootpress_delete_database_tables() {
 
 function tootpress_restore_factory_settings() {
 
-    update_option('tootpress_plugin_version', "1");
+    update_option('tootpress_plugin_version', "4");
     update_option('tootpress_database_version', "1");
 	update_option('tootpress_active', "1");
     update_option('tootpress_mastodon_instance',"");
