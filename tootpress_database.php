@@ -128,10 +128,11 @@ function tootpress_restore_factory_settings() {
     update_option('tootpress_page_id', "");
     update_option('tootpress_amount_toots_page',"50");
 	update_option('tootpress_navigation',"standard");
-	update_option('tootpress_css',"1");
+	// CSS Option requires an inverse value
+	update_option('tootpress_css',"0");
 	update_option('tootpress_backlink','0');
     update_option('tootpress_developer',"0");
-	
+
 	global $wpdb;
 	$table_name=$wpdb->prefix . 'tootpress_toots';
 	$wpdb->get_var( "DELETE FROM $table_name" );
