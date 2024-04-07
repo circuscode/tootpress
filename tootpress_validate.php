@@ -147,7 +147,7 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
         }
         // If new ID is given
         elseif ($pageid<>get_option( 'tootpress_page_id')) {
-            flush_rewrite_rules();
+            update_option('tootpress_rewrite_update','1');
         }
     }
 

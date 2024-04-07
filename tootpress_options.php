@@ -30,6 +30,12 @@ add_action( 'admin_menu', 'tootpress_options_menu');
 
 function tootpress_options_content() {
 
+	// Post-Processing
+
+	if(get_option('tootpress_rewrite_update')) {
+		tootpress_rewrite_update();
+	}
+
     // Header
 	echo '
 	<div class="wrap">

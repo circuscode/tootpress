@@ -40,6 +40,7 @@ if (!defined('ABSPATH')) { exit; }
 		if(tootpress_ready_to_retrieve_toots_from_mastodon_api()) {
 			tootpress_retrieve_mastodon_account();
 		}
+		add_option('tootpress_rewrite_update','0');
 	}
 	
 }

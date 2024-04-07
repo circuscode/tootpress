@@ -146,4 +146,24 @@ function tootpress_retrieve_mastodon_account() {
 
 }
 
+/**
+ * Update Rewrite Rules
+ * 
+ * @since 0.3
+ * 
+ * @return null
+ */
+
+function tootpress_rewrite_update() {
+
+	$update_rewrites=get_option('tootpress_rewrite_update');
+
+	if($update_rewrites) {
+		flush_rewrite_rules();
+	}
+
+	update_option('tootpress_rewrite_update','0');
+
+}
+
 ?>
