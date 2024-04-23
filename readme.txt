@@ -60,6 +60,7 @@ Following toot objects are supported.
 
 * Text
 * Images
+* Galleries
 * URLs
 * Hashtags
 * Mentions
@@ -68,7 +69,6 @@ Following toot objects are supported.
 
 Following toot objects are not supported.
 
-* Galleries
 * Audio
 * Video
 * Poll
@@ -132,11 +132,27 @@ TootPress does not modify the existing canonical url handling in WordPress. If y
 
 The length of the cron period in combination with the configuration of caching determines how early a toot will be displayed within the blog. If a toot should be displayed as early as possible, the caching must be deactivated for the page containing the toots. Another possibility is removing the affected page from the cache, if new toots have been loaded. For this, a WordPress Action is fired by the plugin, which then must be processed by your caching plugin.
 
+= How are backlinks to Mastodon displayed? =
+
+Backlinks to Mastodon can be activated in the plugin settings. In this case, the Mastodon Logo, which is shown for each toot, will be extended with an link to the original toot on the corresponding Mastodon instance. Recommendation is not activating the backlinks as this could cause an negative impact on SEO rating.
+
 = Does TootPress support WordPress Multisite? =
 
 No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
 
 == Changelog ==
+
+= 0.3 "Deadpool" =
+
+* April 2024
+* Feature: Support of Gallery Toots
+* Feature: Amount of Toots will be shown in WordPress Dashboard
+* Feature: Option to activate Backlinks to Mastodon
+* Changed: Label of User Interface Section in Plugin Options
+* Bugfix: Plugin CSS will now really be activated
+* Bugfix: Rewrite Rules will be updated after changed settings 
+* Bugfix: Internal Plugin Version will be set corretly
+* Bugfix: CSS Option will be set correctly with Restore of default Settings
 
 = 0.2.1 =
 
@@ -155,6 +171,9 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 * Initial Release
 
 == Upgrade Notice ==
+
+= 0.3 =
+This version brings gallery support and contains major bugfixes.
 
 = 0.2.1 =
 This version includes bugfixing only.
