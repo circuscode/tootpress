@@ -32,6 +32,10 @@ TootPress CSS @ Blog
     max-width: 100%;
 }
 
+.toot-image-gallery {
+    margin-bottom:5px;
+}
+
 .tootpress_nav {
     margin-top:80px;
     width:100%;

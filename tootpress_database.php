@@ -110,12 +110,13 @@ function tootpress_delete_database_tables() {
 
 function tootpress_restore_factory_settings() {
 
-    update_option('tootpress_plugin_version', "1");
+    update_option('tootpress_plugin_version', "4");
     update_option('tootpress_database_version', "1");
 	update_option('tootpress_active', "1");
     update_option('tootpress_mastodon_instance',"");
     update_option('tootpress_mastodon_oauth_access_token',"");
     update_option('tootpress_mastodon_account_id',"");
+	update_option('tootpress_mastodon_account_name',"");
     update_option('tootpress_mastodon_amount_of_requests',"0");
     update_option('tootpress_latest_toot',"");
     update_option('tootpress_oldest_toot',"");
@@ -127,9 +128,12 @@ function tootpress_restore_factory_settings() {
     update_option('tootpress_page_id', "");
     update_option('tootpress_amount_toots_page',"50");
 	update_option('tootpress_navigation',"standard");
-	update_option('tootpress_css',"1");
+	// CSS Option requires an inverse value (please do not ask why)
+	update_option('tootpress_css',"0");
+	update_option('tootpress_backlink','0');
+	update_option('tootpress_rewrite_update','0');
     update_option('tootpress_developer',"0");
-	
+
 	global $wpdb;
 	$table_name=$wpdb->prefix . 'tootpress_toots';
 	$wpdb->get_var( "DELETE FROM $table_name" );

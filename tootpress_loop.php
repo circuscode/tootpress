@@ -69,13 +69,18 @@ add_filter ('the_content', 'tootpress_content');
     $toot_cache=tootpress_get_toots_from_database($amount_toots_page, $range);
     $amount_toots_cache=count($toot_cache);
 
+    // Get Configuration
+    $mastodon_instance=tootpress_get_mastodon_instance();
+    $mastodon_account=tootpress_get_mastodon_account_name();
+    $tootpress_backlink=tootpress_get_backlink_option();
+
     // Loop
     if($amount_toots_cache>0) {
 
         foreach($toot_cache as $toot) {
 
             // Paint
-            $tootloop.=tootpress_paint_toot( $toot['toot_mastodon_id'], $toot['toot_date'], $toot['toot_content'], $toot['toot_media'] );
+            $tootloop.=tootpress_paint_toot( $toot['toot_mastodon_id'], $toot['toot_date'], $toot['toot_content'], $toot['toot_media'], $mastodon_instance, $mastodon_account, $tootpress_backlink);
     
         }
 

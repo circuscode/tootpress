@@ -50,6 +50,19 @@ if (!defined('ABSPATH')) { exit; }
 }
 
 /**
+ * Get Mastodon Account Name
+ * 
+ * @since 0.3
+ * 
+ * @return string Mastodon Account Name
+ */
+
+ function tootpress_get_mastodon_account_name() {
+    $mastodon_account_name=get_option('tootpress_mastodon_account_name');
+    return $mastodon_account_name;
+}
+
+/**
  * Get latest Toot
  * 
  * @since 0.1
@@ -142,6 +155,22 @@ if (!defined('ABSPATH')) { exit; }
     }
 
 	return $css;
+
+}
+
+/**
+ * Get Backlink Option
+ * 
+ * @since 0.3
+ * 
+ * @return int Backlink Option
+ */
+
+ function tootpress_get_backlink_option() {
+
+	$backlink=get_option('tootpress_backlink');
+
+	return $backlink;
 
 }
 

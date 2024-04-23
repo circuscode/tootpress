@@ -125,4 +125,45 @@ function tootpress_is_pretty_permalink_enabled() {
 	}
 }
 
+/**
+ * Retrieve Mastodon Account
+ * 
+ * Important: API Call Readyness should be checked before Function Call
+ * 
+ * @since 0.3
+ * 
+ * @return null
+ */
+
+function tootpress_retrieve_mastodon_account() {
+
+		// API Request: Verify Credentials
+		$verifycrendentials=tootpress_mastodon_apirequest_account_verify_credentials();
+		$mastodon_account=$verifycrendentials['username'];
+
+		// Save Mastodon Account Name
+		update_option('tootpress_mastodon_account_name',$mastodon_account);
+
+}
+
+/**
+ * Update Rewrite Rules
+ * 
+ * @since 0.3
+ * 
+ * @return null
+ */
+
+function tootpress_rewrite_update() {
+
+	$update_rewrites=get_option('tootpress_rewrite_update');
+
+	if($update_rewrites) {
+		flush_rewrite_rules();
+	}
+
+	update_option('tootpress_rewrite_update','0');
+
+}
+
 ?>

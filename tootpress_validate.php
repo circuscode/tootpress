@@ -98,17 +98,25 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
             if(!($accountid==$response_accountid)) {
                 add_settings_error( 'tootpress-options', 'invalid-accountid', 'Account ID: Account ID is not in scope of the OAUTH Access Token' );
                 $accountid='';
+            } else {
+                // Retrieve Account Name
+                tootpress_retrieve_mastodon_account();
             }
 
         } else {
 
             // If no AuthCode is maintained,
-            // UserID will be removed to prevent inconsistant values in TootPress
+            // UserID will be removed to prevent inconsistant values
             add_settings_error( 'tootpress-options', 'invalid-accountid', 'Account ID: Account ID is linked to OAUTH Access Token. Value removed.' );
             $accountid='';
 
         }
 
+    }
+
+    // Remove Account Name (if verified Account ID is missing)
+    if($accountid=='') { 
+        update_option('tootpress_mastodon_account_name',"");
     }
 
     return $accountid;
@@ -139,7 +147,7 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
         }
         // If new ID is given
         elseif ($pageid<>get_option( 'tootpress_page_id')) {
-            flush_rewrite_rules();
+            update_option('tootpress_rewrite_update','1');
         }
     }
 
@@ -233,6 +241,11 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
 /**
  * Validates the CSS Option
  * 
+ * Checkbox Label: Deactivate CSS
+ * What is the meaning of the values?
+ * 1 = No (Plugin CSS is used)
+ * 0 = Yes (Plugin CSS is not used)
+ * 
  * @since 0.1
  * 
  * @param string Input Field CSS Option
@@ -247,6 +260,31 @@ function tootpress_validate_mastodon_oauth_access_token ($accesstoken) {
         $output=0;
     }
   
+    return $output;
+}
+
+/**
+ * Validates the Backlink Option
+ * 
+ * Checkbox Label: Activate Backlink
+ * What is the meaning of the values?
+ * 1 = Yes
+ * 0 = No
+ * 
+ * @since 0.3
+ * 
+ * @param string Input Field Backlink Option
+ * @return int Reliable Backlink Option
+ */
+
+ function tootpress_validate_backlink($input) {
+
+    if ($input==0) {
+        $output=0;
+    } else {
+        $output=1;
+    }
+
     return $output;
 }
 
