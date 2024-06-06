@@ -19,8 +19,27 @@ if (!defined('ABSPATH')) { exit; }
  * @since 0.1
  */
 
- function tootpress_fire_toots_update() {
+function tootpress_fire_toots_update() {
 	do_action( 'tootpress_toots_update' );
 }
+
+/**
+ * Filter: Add the Preamble
+ * 
+ * @since 0.3.1
+ * 
+ * @return html Preamble Content
+ *
+ * function tootpress_preamble_add( $preamble ) {
+ * 
+ * 		// Add your filter code here
+ * 		// Example: $preamble='<p>Hello World.</p>';
+ * 
+ * 		return $preamble;
+ *
+ * }
+ * add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_create', 10, 1 );
+ * 
+ */
 
 ?>

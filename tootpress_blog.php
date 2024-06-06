@@ -154,4 +154,25 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 
 }
 
+/**
+ * Creates the Preamble
+ * 
+ * @since 0.3.1
+ * 
+ * @return string html
+ */
+
+function tootpress_paint_preamble() {
+
+	$preamble='';
+	$preamble.=apply_filters( 'tootpress_preamble_filter', $preamble );;
+
+	if($preamble) {
+		$preamble='<div class="tootpress-preamble">'.$preamble.'</div>';
+	}
+
+	return $preamble;
+
+}
+
 ?>
