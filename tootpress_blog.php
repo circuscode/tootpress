@@ -157,18 +157,26 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 /**
  * Creates the Preamble
  * 
+ * This filter outputs html content before the toot loop.  
+ * 
  * @since 0.3.1
  * 
+ * @param int TootPress Current Page
  * @return string html
  */
 
-function tootpress_paint_preamble() {
+ function tootpress_paint_preamble($tootpress_current_page) {
 
 	$preamble='';
-	$preamble.=apply_filters( 'tootpress_preamble_filter', $preamble );;
 
-	if($preamble) {
-		$preamble='<div class="tootpress-preamble">'.$preamble.'</div>';
+	if($tootpress_current_page==1) {
+
+		$preamble.=apply_filters( 'tootpress_preamble_filter', $preamble );
+
+		if($preamble) {
+			$preamble='<div class="tootpress-preamble">'.$preamble.'</div>';
+		}
+
 	}
 
 	return $preamble;

@@ -99,7 +99,34 @@ TootPress creates 2 folders within the WordPress Uploads Directory.
 
 ## TootPress API
 
-WordPress Action: tootpress_toots_update (fired on toot update)
+### Actions
+
+**tootpress_toots_update**  
+This action will be fired after toot update to execute custom post-processing.  
+You can use the following code.
+
+    function tootpress_toots_update_postprocessing() {
+
+        // Add your code to be executed here
+
+    }
+    add_action('tootpress_toots_update', 'tootpress_toots_update_postprocessing');
+
+### Filter
+
+**tootpress_preamble_add**  
+This filter outputs html content before the toot loop.  
+You can use the following code.
+
+    function tootpress_preamble_add( $preamble ) {
+
+	    	// Add your filter code here
+		    // Example: $preamble='<p>Hello World.</p>';
+
+		    return $preamble;
+
+    }
+    add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
 
 ## WordPress Framework
 
@@ -176,6 +203,11 @@ This project is licensed under the GPL3 License.
 * [Official Plugin Page](https://www.unmus.de/tootpress/) (German)
 
 ## Changelog
+
+### 0.3.1
+
+* June 2024
+* Feature: Preamble Filter
 
 ### 0.3 "Deadpool"
 
