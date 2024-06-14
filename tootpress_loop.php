@@ -32,6 +32,9 @@ function tootpress_content($content) {
         // TootPress Content
         $tootpress_content='<div id="tootpress-area">';
 
+        // TootPress Preamble
+        $tootpress_content.=tootpress_paint_preamble($tootpress_current_page);
+
         // TootPress Loop
         $tootpress_content.=tootpress_loop($tootpress_current_page);
 
