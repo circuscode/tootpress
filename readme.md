@@ -123,7 +123,7 @@ You can use the following code.
     function tootpress_preamble_add( $preamble ) {
 
         // Add your filter code here
-		// Example: $preamble='<p>Hello World.</p>';
+        // Example: $preamble='<p>Hello World.</p>';
 
 		return $preamble;
 
