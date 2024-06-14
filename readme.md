@@ -101,7 +101,8 @@ TootPress creates 2 folders within the WordPress Uploads Directory.
 
 ### Actions
 
-**tootpress_toots_update**  
+#### tootpress_toots_update
+
 This action will be fired after toot update to execute custom post-processing.  
 You can use the following code.
 
@@ -114,16 +115,17 @@ You can use the following code.
 
 ### Filter
 
-**tootpress_preamble_add**  
+#### tootpress_preamble_add
+
 This filter outputs html content before the toot loop.  
 You can use the following code.
 
     function tootpress_preamble_add( $preamble ) {
 
-	    	// Add your filter code here
-		    // Example: $preamble='<p>Hello World.</p>';
+        // Add your filter code here
+		// Example: $preamble='<p>Hello World.</p>';
 
-		    return $preamble;
+		return $preamble;
 
     }
     add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
@@ -143,6 +145,7 @@ Following components of WordPress are used in TootPress.
 * File Functions
 * Content Functions
 * Escaping Functions
+* Hooks
 
 ## Frequently Asked Questions
 
@@ -204,7 +207,7 @@ This project is licensed under the GPL3 License.
 
 ## Changelog
 
-### 0.3.1
+### 0.4 "Cassie Lang"
 
 * June 2024
 * Feature: Preamble Filter

@@ -11,10 +11,14 @@
 if (!defined('ABSPATH')) { exit; }
 
 /**
- * Fires hook when new toots are loaded
+ * Actions
+ */
+
+/**
+ * Fires when new toots are loaded
  * 
  * This hook can be used by other plugins to process after load functions.
- * For example: Refresh Cache
+ * For example: Cache Refresh
  * 
  * @since 0.1
  */
@@ -24,9 +28,9 @@ function tootpress_fire_toots_update() {
 }
 
 /**
- * Example: tootpress_toots_update
+ * Action Example: tootpress_toots_update
  * 
- * @since 0.3.1
+ * @since 0.4
  * 
  * function tootpress_toots_update_postprocessing() {
  *
@@ -38,12 +42,32 @@ function tootpress_fire_toots_update() {
  */
 
 /**
- * Example: tootpress_preamble_filter
+ * Filter
+ */
+
+/**
+ * Preample
  * 
- * @since 0.3.1
+ * This filter outputs html content before the toot loop. 
  * 
- * @param string Preamble Contentless 
- * @return html Preamble Content
+ * @since 0.4
+ * 
+ * @param string Unfiltered Preample
+ * @return html Filtered Preample
+ */
+
+function tootpress_preamble_filter_apply($preamble) {
+	$preamble.=apply_filters( 'tootpress_preamble_filter', $preamble );
+	return $preamble;
+}
+
+/**
+ * Filter Example: tootpress_preamble_filter
+ * 
+ * @since 0.4
+ * 
+ * @param string Unfiltered Preample
+ * @return html Filtered Preample
  *
  * function tootpress_preamble_add( $preamble ) {
  * 

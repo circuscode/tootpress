@@ -3,7 +3,7 @@ Contributors: unmus
 Tags: mastodon, toots, microblogging, blog, fediverse
 Requires at least: 6.1
 Tested up to: 6.5
-Stable tag: 0.3.1
+Stable tag: 0.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -165,7 +165,7 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 
 == Changelog ==
 
-= 0.3.1 =
+= 0.4 "Cassie Lang" =
 
 * June 2024
 * Feature: Preamble Filter
@@ -200,7 +200,7 @@ No. TootPress does not support the WordPress Multisite Feature. The plugin is wo
 
 == Upgrade Notice ==
 
-= 0.3.1 =
+= 0.4 =
 This version includes a preamble filter.
 
 = 0.3 =
