@@ -125,7 +125,7 @@ You can use the following code.
         // Add your filter code here
         // Example: $preamble='<p>Hello World.</p>';
 
-		return $preamble;
+        return $preamble;
 
     }
     add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
