@@ -81,4 +81,40 @@ function tootpress_preamble_filter_apply($preamble) {
  * 
  */
 
+/**
+ * Afterloop Filter
+ * 
+ * This filter outputs html content after the toot loop. 
+ * 
+ * @since 0.5
+ * 
+ * @param string Unfiltered Content
+ * @return html Filtered Content
+ */
+
+function tootpress_afterloop_filter_apply($content) {
+	$content.=apply_filters( 'tootpress_afterloop_filter', $content );
+	return $content;
+}
+
+/**
+ * Filter Example: tootpress_afterloop_filter
+ * 
+ * @since 0.5
+ * 
+ * @param string Unfiltered Content
+ * @return html Filtered Content
+ *
+ * function tootpress_afterloop_add( $content ) {
+ * 
+ * 		// Add your filter code here
+ * 		// Example: $content='<p>Hello World.</p>';
+ * 
+ * 		return $content;
+ *
+ * }
+ * add_filter( 'tootpress_afterloop_filter', 'tootpress_afterloop_add', 10, 1 );
+ * 
+ */
+
 ?>

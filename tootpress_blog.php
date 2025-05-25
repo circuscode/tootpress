@@ -181,4 +181,32 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 
 }
 
+/**
+ * Creates the Afterloop Content 
+ * 
+ * @since 0.5
+ * 
+ * @param int TootPress Current Page
+ * @return string html
+ */
+
+ function tootpress_paint_afterloop($tootpress_current_page) {
+
+	$content='';
+	$lastpage=tootpress_amount_of_pages();
+
+	if($tootpress_current_page==$lastpage) {
+
+		$content.=tootpress_afterloop_filter_apply($content);
+
+		if($content) {
+			$content='<div class="tootpress-afterloop">'.$content.'</div>';
+		}
+
+	}
+
+	return $content;
+
+}
+
 ?>

@@ -207,6 +207,11 @@ This project is licensed under the GPL3 License.
 
 ## Changelog
 
+### 0.5 "xxx"
+
+* xxx 2025
+* Feature: Afterloop Filter
+
 ### 0.4 "Cassie Lang"
 
 * June 2024

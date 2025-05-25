@@ -38,6 +38,9 @@ function tootpress_content($content) {
         // TootPress Loop
         $tootpress_content.=tootpress_loop($tootpress_current_page);
 
+        // TootPress Afterloop
+        $tootpress_content.=tootpress_paint_afterloop($tootpress_current_page);
+
         // TootPress Bottom Navigation
         $tootpress_content.=tootpress_create_menu($tootpress_current_page);
 
