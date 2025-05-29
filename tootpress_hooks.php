@@ -48,7 +48,7 @@ function tootpress_fire_toots_update() {
 /**
  * Preample
  * 
- * This filter outputs html content before the toot loop. 
+ * This filter outputs html content before the initial toot loop. 
  * 
  * @since 0.4
  * 
@@ -82,30 +82,30 @@ function tootpress_preamble_filter_apply($preamble) {
  */
 
 /**
- * Afterloop Filter
+ * Closing Filter
  * 
- * This filter outputs html content after the toot loop. 
+ * This filter outputs content after the last toot loop. 
  * 
  * @since 0.5
  * 
- * @param string Unfiltered Content
- * @return html Filtered Content
+ * @param string Content
+ * @return string Filtered Content
  */
 
-function tootpress_afterloop_filter_apply($content) {
-	$content.=apply_filters( 'tootpress_afterloop_filter', $content );
+function tootpress_closing_filter_apply($content) {
+	$content.=apply_filters( 'tootpress_closing_filter', $content );
 	return $content;
 }
 
 /**
- * Filter Example: tootpress_afterloop_filter
+ * Filter Example: tootpress_closing_filter
  * 
  * @since 0.5
  * 
- * @param string Unfiltered Content
- * @return html Filtered Content
+ * @param string Content
+ * @return string Filtered Content
  *
- * function tootpress_afterloop_add( $content ) {
+ * function tootpress_closing_add( $content ) {
  * 
  * 		// Add your filter code here
  * 		// Example: $content='<p>Hello World.</p>';
@@ -113,7 +113,7 @@ function tootpress_afterloop_filter_apply($content) {
  * 		return $content;
  *
  * }
- * add_filter( 'tootpress_afterloop_filter', 'tootpress_afterloop_add', 10, 1 );
+ * add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );
  * 
  */
 

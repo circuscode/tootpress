@@ -39,7 +39,7 @@ function tootpress_content($content) {
         $tootpress_content.=tootpress_loop($tootpress_current_page);
 
         // TootPress Afterloop
-        $tootpress_content.=tootpress_paint_afterloop($tootpress_current_page);
+        $tootpress_content.=tootpress_paint_closing($tootpress_current_page);
 
         // TootPress Bottom Navigation
         $tootpress_content.=tootpress_create_menu($tootpress_current_page);

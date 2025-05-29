@@ -115,9 +115,9 @@ You can use the following code.
 
 ### Filter
 
-#### tootpress_preamble_add
+#### tootpress_preamble_filter
 
-This filter outputs html content before the toot loop.  
+This filter outputs html content before the initial toot loop.  
 You can use the following code.
 
     function tootpress_preamble_add( $preamble ) {
@@ -129,6 +129,21 @@ You can use the following code.
 
     }
     add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
+
+#### tootpress_closing_filter
+
+This filter outputs html content after the last toot loop.  
+You can use the following code.
+
+    function tootpress_closing_add( $content ) {
+
+        // Add your filter code here
+        // Example: $content='<p>Hello World.</p>';
+
+        return $content;
+
+    }
+    add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );
 
 ## WordPress Framework
 
@@ -209,8 +224,8 @@ This project is licensed under the GPL3 License.
 
 ### 0.5 "xxx"
 
-* xxx 2025
-* Feature: Afterloop Filter
+* xxx
+* Feature: Closing Filter
 
 ### 0.4 "Cassie Lang"
 

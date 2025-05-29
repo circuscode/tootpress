@@ -182,25 +182,25 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 }
 
 /**
- * Creates the Afterloop Content 
+ * Creates the Closing Filter Content 
  * 
  * @since 0.5
  * 
  * @param int TootPress Current Page
- * @return string html
+ * @return string Content
  */
 
- function tootpress_paint_afterloop($tootpress_current_page) {
+ function tootpress_paint_closing($tootpress_current_page) {
 
 	$content='';
 	$lastpage=tootpress_amount_of_pages();
 
 	if($tootpress_current_page==$lastpage) {
 
-		$content.=tootpress_afterloop_filter_apply($content);
+		$content.=tootpress_closing_filter_apply($content);
 
 		if($content) {
-			$content='<div class="tootpress-afterloop">'.$content.'</div>';
+			$content='<div class="tootpress-closing">'.$content.'</div>';
 		}
 
 	}

@@ -116,7 +116,7 @@ You can use the following code.
 `}`
 `add_action('tootpress_toots_update', 'tootpress_toots_update_postprocessing');`
 
-**Filter: tootpress_preamble_add**  
+**Filter: tootpress_preamble_filter**  
 It outputs html content before the toot loop.  
 You can use the following code.
 
@@ -129,6 +129,20 @@ You can use the following code.
 ``
 `}`
 `add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );`
+
+**Filter: tootpress_closing_filter**  
+It outputs html content after the last toot loop.  
+You can use the following code.
+
+`function tootpress_closing_add( $content ) {`
+``
+`    // Add your filter code here`
+`    // Example: $content='<p>Hello World.</p>';`
+``
+`    return $content;`
+``
+`}`
+`add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );`
 
 = Related Links =
 
