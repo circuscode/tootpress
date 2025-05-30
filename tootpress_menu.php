@@ -267,11 +267,18 @@ function tootpress_amount_of_pages() {
 
  function tootpress_label_older_toots() {
 
+	$label='';
+
 	if(tootpress_is_language_german()) {
-		return 'Ältere Toots';
+		$label='Ältere Toots';
 	} else {
-		return 'Older Toots';
+		$label='Older Toots';
 	}
+
+	// Apply Filter
+	$label=tootpress_menu_backward_filter_apply($label);
+
+	return $label;
 
 }
 

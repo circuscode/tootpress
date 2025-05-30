@@ -158,6 +158,20 @@ You can use the following code.
 `}`
 `add_filter( 'tootpress_menu_forward_label', 'tootpress_menu_forward_label_change', 10, 1 );`
 
+**Filter: tootpress_menu_backward_label**  
+This filter overwrites the backward label in the bottom navigation.   
+You can use the following code.
+
+`function tootpress_menu_backward_label_change( $label ) {`
+``
+`    // Add your filter code here`
+`    // Example: $label='Older Posts';`
+``
+`    return $label;`
+``
+`}`
+`add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );`
+
 = Related Links =
 
 * [Source Code @ GitHub](https://github.com/circuscode/tootpress)
