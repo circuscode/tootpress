@@ -117,4 +117,38 @@ function tootpress_closing_filter_apply($content) {
  * 
  */
 
+/**
+ * Move Forward Filter
+ * 
+ * This filter overwrites the forward label in the menu
+ * 
+ * @since 0.5
+ * 
+ * @param string Label Forward
+ * @return string New Label
+ */
+
+function tootpress_menu_forward_filter_apply($label) {
+	$label=apply_filters( 'tootpress_menu_forward_label', $label );
+	return $label;
+}
+
+/**
+ * Usage Example: tootpress_menu_forward_label
+ * 
+ * @param string Label Forward
+ * @return string New Label
+ *
+ * function tootpress_menu_forward_label_change( $label ) {
+ * 
+ * 		// Add your filter code here
+ * 		// Example: $label='Newer Posts';
+ * 
+ * 		return $label;
+ *
+ * }
+ * add_filter( 'tootpress_menu_forward_label', 'tootpress_menu_forward_label_change', 10, 1 );
+ * 
+ */
+ 
 ?>
