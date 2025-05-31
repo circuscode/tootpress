@@ -184,5 +184,44 @@ function tootpress_menu_backward_filter_apply($label) {
  *  add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );
  *
  */
- 
+
+/**
+ * Before Loop Filter
+ * 
+ * This filter outputs content before the toot loop.
+ * It will be applied on all tootpress pages.
+ * 
+ * @since 0.5
+ * 
+ * @param int TootPress Page Number
+ * @return string Content
+ */
+
+function tootpress_beforeloop_filter_apply($page_number) {
+
+	$content='';
+
+	$content=apply_filters( 'tootpress_beforeloop_filter', $content, $page_number );
+
+	return $content;
+}
+
+/**
+ * Usage Example: tootpress_beforeloop_filter
+ * 
+ * @param string Content (empty)
+ * @param int TootPress Page Number
+ * @return string Content (filtered)
+ *
+ * function tootpress_beforeloop_filter_add( $content, $page_number ) {
+ * 
+ * 		// Add your filter code here
+ * 		// Example: $content='<p>Page '.$page_number.'</p>';
+ * 
+ * 		return $content;
+ *
+ * }
+ * add_filter( 'tootpress_beforeloop_filter', 'tootpress_beforeloop_filter_add', 10, 2 );
+ */
+
 ?>

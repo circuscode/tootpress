@@ -35,10 +35,13 @@ function tootpress_content($content) {
         // TootPress Preamble
         $tootpress_content.=tootpress_paint_preamble($tootpress_current_page);
 
+        // TootPress Before Loop
+        $tootpress_content.=tootpress_paint_beforeloop($tootpress_current_page);
+
         // TootPress Loop
         $tootpress_content.=tootpress_loop($tootpress_current_page);
 
-        // TootPress Afterloop
+        // TootPress Closing
         $tootpress_content.=tootpress_paint_closing($tootpress_current_page);
 
         // TootPress Bottom Navigation

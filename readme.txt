@@ -172,6 +172,20 @@ You can use the following code.
 `}`
 `add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );`
 
+**Filter: tootpress_beforeloop_filter**  
+This filter outputs content before the toot loop (on all tootpress pages).  
+You can use the following code.
+
+`function tootpress_beforeloop_filter_add( $content, $page_number ) {`
+``
+`    // Add your filter code here`
+`    // Example: $content='<p>Page '.$page_number.'</p>';`
+``
+`    return $label;`
+``
+`}`
+`add_filter( 'tootpress_beforeloop_filter', 'tootpress_beforeloop_filter_add', 10, 2 );`
+
 = Related Links =
 
 * [Source Code @ GitHub](https://github.com/circuscode/tootpress)

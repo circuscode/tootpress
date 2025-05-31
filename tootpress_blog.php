@@ -209,4 +209,25 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 
 }
 
+/**
+ * Create the Before Loop Content.
+ * 
+ * @since 0.5
+ * 
+ * @param int TootPress Current Page
+ * @return string Content
+ */
+
+function tootpress_paint_beforeloop($tootpress_current_page) {
+
+	$content=tootpress_beforeloop_filter_apply($tootpress_current_page);
+
+	if($content) {
+		$content='<div class="tootpress-beforeloop">'.$content.'</div>';
+	}
+
+	return $content;
+
+}
+
 ?>
