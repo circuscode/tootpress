@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) { exit; }
 /**
  * Fires when new toots are loaded
  * 
- * This hook can be used by other plugins to process after load functions.
+ * This action will be fired after toot update to execute custom post-processing.  
  * For example: Cache Refresh
  * 
  * @since 0.1
@@ -26,20 +26,6 @@ if (!defined('ABSPATH')) { exit; }
 function tootpress_fire_toots_update() {
 	do_action( 'tootpress_toots_update' );
 }
-
-/**
- * Action Example: tootpress_toots_update
- * 
- * @since 0.4
- * 
- * function tootpress_toots_update_postprocessing() {
- *
- * 		// Add your code to be executed here
- *
- * }
- * add_action('tootpress_toots_update', 'tootpress_toots_update_postprocessing');
- * 
- */
 
 /**
  * Filter
@@ -52,34 +38,14 @@ function tootpress_fire_toots_update() {
  * 
  * @since 0.4
  * 
- * @param string Unfiltered Preample
+ * @param string Empty Preample
  * @return html Filtered Preample
  */
 
 function tootpress_preamble_filter_apply($preamble) {
-	$preamble.=apply_filters( 'tootpress_preamble_filter', $preamble );
+	$preamble=apply_filters( 'tootpress_preamble_filter', $preamble );
 	return $preamble;
 }
-
-/**
- * Filter Example: tootpress_preamble_filter
- * 
- * @since 0.4
- * 
- * @param string Unfiltered Preample
- * @return html Filtered Preample
- *
- * function tootpress_preamble_add( $preamble ) {
- * 
- * 		// Add your filter code here
- * 		// Example: $preamble='<p>Hello World.</p>';
- * 
- * 		return $preamble;
- *
- * }
- * add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
- * 
- */
 
 /**
  * Closing Filter
@@ -88,34 +54,14 @@ function tootpress_preamble_filter_apply($preamble) {
  * 
  * @since 0.5
  * 
- * @param string Content
+ * @param string Empty Content
  * @return string Filtered Content
  */
 
 function tootpress_closing_filter_apply($content) {
-	$content.=apply_filters( 'tootpress_closing_filter', $content );
+	$content=apply_filters( 'tootpress_closing_filter', $content );
 	return $content;
 }
-
-/**
- * Filter Example: tootpress_closing_filter
- * 
- * @since 0.5
- * 
- * @param string Content
- * @return string Filtered Content
- *
- * function tootpress_closing_add( $content ) {
- * 
- * 		// Add your filter code here
- * 		// Example: $content='<p>Hello World.</p>';
- * 
- * 		return $content;
- *
- * }
- * add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );
- * 
- */
 
 /**
  * Move Forward Filter
@@ -124,7 +70,7 @@ function tootpress_closing_filter_apply($content) {
  * 
  * @since 0.5
  * 
- * @param string Label Forward
+ * @param string Original Label
  * @return string New Label
  */
 
@@ -134,31 +80,13 @@ function tootpress_menu_forward_filter_apply($label) {
 }
 
 /**
- * Usage Example: tootpress_menu_forward_label
- * 
- * @param string Label Forward
- * @return string New Label
- *
- * function tootpress_menu_forward_label_change( $label ) {
- * 
- * 		// Add your filter code here
- * 		// Example: $label='Newer Posts';
- * 
- * 		return $label;
- *
- * }
- * add_filter( 'tootpress_menu_forward_label', 'tootpress_menu_forward_label_change', 10, 1 );
- * 
- */
-
-/**
  * Move Backward Filter
  * 
  * This filter overwrites the backward label in the menu
  * 
  * @since 0.5
  * 
- * @param string Label Backward
+ * @param string Original Backward
  * @return string New Label
  */
 
@@ -166,24 +94,6 @@ function tootpress_menu_backward_filter_apply($label) {
 	$label=apply_filters( 'tootpress_menu_backward_label', $label );
 	return $label;
 }
-
-/**
- * Usage Example: tootpress_menu_backward_label
- * 
- * @param string Label Backward
- * @return string New Label
- *
- * function tootpress_menu_backward_label_change( $label ) {
- * 
- * 		// Add your filter code here
- * 		// Example: $label='Older Posts';
- * 
- * 		return $label;
- *
- * }
- *  add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );
- *
- */
 
 /**
  * Before Loop Filter
@@ -197,31 +107,14 @@ function tootpress_menu_backward_filter_apply($label) {
  * @return string Content
  */
 
-function tootpress_beforeloop_filter_apply($page_number) {
+function tootpress_beforeloop_filter_apply($current_page_number) {
 
 	$content='';
+	$last_page_number=tootpress_amount_of_pages();
 
-	$content=apply_filters( 'tootpress_beforeloop_filter', $content, $page_number );
+	$content=apply_filters( 'tootpress_beforeloop_filter', $content, $current_page_number, $last_page_number );
 
 	return $content;
 }
-
-/**
- * Usage Example: tootpress_beforeloop_filter
- * 
- * @param string Content (empty)
- * @param int TootPress Page Number
- * @return string Content (filtered)
- *
- * function tootpress_beforeloop_filter_add( $content, $page_number ) {
- * 
- * 		// Add your filter code here
- * 		// Example: $content='<p>Page '.$page_number.'</p>';
- * 
- * 		return $content;
- *
- * }
- * add_filter( 'tootpress_beforeloop_filter', 'tootpress_beforeloop_filter_add', 10, 2 );
- */
 
 ?>
