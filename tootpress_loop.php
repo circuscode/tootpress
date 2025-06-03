@@ -41,6 +41,9 @@ function tootpress_content($content) {
         // TootPress Loop
         $tootpress_content.=tootpress_loop($tootpress_current_page);
 
+        // TootPress After Loop
+        $tootpress_content.=tootpress_paint_afterloop($tootpress_current_page);
+
         // TootPress Closing
         $tootpress_content.=tootpress_paint_closing($tootpress_current_page);
 

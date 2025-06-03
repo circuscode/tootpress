@@ -230,4 +230,25 @@ function tootpress_paint_beforeloop($tootpress_current_page) {
 
 }
 
+/**
+ * Create the After Loop Content.
+ * 
+ * @since 0.5
+ * 
+ * @param int TootPress Current Page
+ * @return string Content
+ */
+
+function tootpress_paint_afterloop($tootpress_current_page) {
+
+	$content=tootpress_afterloop_filter_apply($tootpress_current_page);
+
+	if($content) {
+		$content='<div class="tootpress-afterloop">'.$content.'</div>';
+	}
+
+	return $content;
+
+}
+
 ?>

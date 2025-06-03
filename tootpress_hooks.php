@@ -103,7 +103,7 @@ function tootpress_menu_backward_filter_apply($label) {
  * 
  * @since 0.5
  * 
- * @param int TootPress Page Number
+ * @param int TootPress Current Page Number
  * @return string Content
  */
 
@@ -113,6 +113,28 @@ function tootpress_beforeloop_filter_apply($current_page_number) {
 	$last_page_number=tootpress_amount_of_pages();
 
 	$content=apply_filters( 'tootpress_beforeloop_filter', $content, $current_page_number, $last_page_number );
+
+	return $content;
+}
+
+/**
+ * After Loop Filter
+ * 
+ * This filter outputs content after the toot loop.
+ * It will be applied on all tootpress pages.
+ * 
+ * @since 0.5
+ * 
+ * @param int TootPress Current Page Number
+ * @return string Content
+ */
+
+function tootpress_afterloop_filter_apply($current_page_number) {
+
+	$content='';
+	$last_page_number=tootpress_amount_of_pages();
+
+	$content=apply_filters( 'tootpress_afterloop_filter', $content, $current_page_number, $last_page_number );
 
 	return $content;
 }
