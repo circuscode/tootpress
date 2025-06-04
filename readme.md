@@ -274,6 +274,8 @@ This project is licensed under the GPL3 License.
 * Feature: Move Forward Label Filter
 * Feature: Move Backward Label Filter
 * Feature: Before Loop Filter
+* Feature: After Loop Filter
+* Feature: Mastodon Logo Filter
 
 ### 0.4 "Cassie Lang"
 

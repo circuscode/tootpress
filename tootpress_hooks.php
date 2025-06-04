@@ -139,4 +139,20 @@ function tootpress_afterloop_filter_apply($current_page_number) {
 	return $content;
 }
 
+/**
+ * Mastodon Logo Filter
+ * 
+ * This filter overwrites the Mastodon Logo with Custom Logo
+ * 
+ * @since 0.5
+ * 
+ * @param string img HTML Tag (Mastodon Logo)
+ * @return string img HTML Tag (Custom Logo)
+ */
+
+function tootpress_mastodon_logo_filter_apply($img) {
+	$img=apply_filters( 'tootpress_mastodon_logo_filter', $img );
+	return $img;
+}
+
 ?>

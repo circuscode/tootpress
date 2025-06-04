@@ -144,7 +144,9 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 	}
 
 	// The Elephant
-	$elephant_html.='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	$elephant_img='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	$elephant_img=tootpress_mastodon_logo_filter_apply($elephant_img);
+	$elephant_html.=$elephant_img;
 
 	if($backlink) {
 		$elephant_html.='</a>';
