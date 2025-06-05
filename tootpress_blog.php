@@ -171,7 +171,7 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 
 	if($tootpress_current_page==1) {
 
-		$preamble.=tootpress_preamble_filter_apply($preamble);
+		$preamble=tootpress_preamble_filter_apply($preamble);
 
 		if($preamble) {
 			$preamble='<div class="tootpress-preamble">'.$preamble.'</div>';
@@ -216,13 +216,15 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
  * 
  * @since 0.5
  * 
+ * @param string empty
  * @param int TootPress Current Page
  * @return string Content
  */
 
 function tootpress_paint_beforeloop($tootpress_current_page) {
 
-	$content=tootpress_beforeloop_filter_apply($tootpress_current_page);
+	$content='';
+	$content=tootpress_beforeloop_filter_apply($content, $tootpress_current_page);
 
 	if($content) {
 		$content='<div class="tootpress-beforeloop">'.$content.'</div>';
@@ -237,16 +239,43 @@ function tootpress_paint_beforeloop($tootpress_current_page) {
  * 
  * @since 0.5
  * 
+ * @param string empty
  * @param int TootPress Current Page
  * @return string Content
  */
 
 function tootpress_paint_afterloop($tootpress_current_page) {
 
-	$content=tootpress_afterloop_filter_apply($tootpress_current_page);
+	$content='';
+	$content=tootpress_afterloop_filter_apply($content, $tootpress_current_page);
 
 	if($content) {
 		$content='<div class="tootpress-afterloop">'.$content.'</div>';
+	}
+
+	return $content;
+
+}
+
+/**
+ * Create the Between Element.
+ * 
+ * @since 0.5
+ * 
+ * @param int Open Loops
+ * @return string Between Element
+ */
+
+function tootpress_paint_between($open_loops) {
+
+	$content='';
+
+	if ($open_loops>1) {
+		$content=tootpress_between_filter_apply($content);
+	}
+
+	if($content) {
+		$content='<div class="tootpress-between">'.$content.'</div>';
 	}
 
 	return $content;

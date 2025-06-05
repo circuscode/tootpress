@@ -38,8 +38,8 @@ function tootpress_fire_toots_update() {
  * 
  * @since 0.4
  * 
- * @param string Empty Preample
- * @return html Filtered Preample
+ * @param string Empty
+ * @return string Filtered Preample
  */
 
 function tootpress_preamble_filter_apply($preamble) {
@@ -54,7 +54,7 @@ function tootpress_preamble_filter_apply($preamble) {
  * 
  * @since 0.5
  * 
- * @param string Empty Content
+ * @param string Empty
  * @return string Filtered Content
  */
 
@@ -103,13 +103,13 @@ function tootpress_menu_backward_filter_apply($label) {
  * 
  * @since 0.5
  * 
+ * @param string empty
  * @param int TootPress Current Page Number
  * @return string Content
  */
 
-function tootpress_beforeloop_filter_apply($current_page_number) {
+function tootpress_beforeloop_filter_apply($content, $current_page_number) {
 
-	$content='';
 	$last_page_number=tootpress_amount_of_pages();
 
 	$content=apply_filters( 'tootpress_beforeloop_filter', $content, $current_page_number, $last_page_number );
@@ -125,13 +125,13 @@ function tootpress_beforeloop_filter_apply($current_page_number) {
  * 
  * @since 0.5
  * 
+ * @param string empty
  * @param int TootPress Current Page Number
  * @return string Content
  */
 
-function tootpress_afterloop_filter_apply($current_page_number) {
+function tootpress_afterloop_filter_apply($content, $current_page_number) {
 
-	$content='';
 	$last_page_number=tootpress_amount_of_pages();
 
 	$content=apply_filters( 'tootpress_afterloop_filter', $content, $current_page_number, $last_page_number );
@@ -153,6 +153,22 @@ function tootpress_afterloop_filter_apply($current_page_number) {
 function tootpress_mastodon_logo_filter_apply($img) {
 	$img=apply_filters( 'tootpress_mastodon_logo_filter', $img );
 	return $img;
+}
+
+/**
+ * Between Filter
+ * 
+ * This filter adds custom HTML between the toots
+ * 
+ * @since 0.5
+ * 
+ * @param string Empty
+ * @return string Between Content
+ */
+
+function tootpress_between_filter_apply($content) {
+	$content=apply_filters( 'tootpress_between_filter', $content );	
+	return $content;
 }
 
 ?>
