@@ -50,6 +50,7 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media , $instance
 
 	// Toot Content
 	$content=tootpress_remove_target_blank($content);
+	$content=tootpress_toot_content_filter_apply($content);
 	$toot_html.='<div class="toot-content">'.wp_kses($content, tootpress_escaping_allowed_html() ).'</div>';
 
 	// Toot Image

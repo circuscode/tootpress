@@ -171,4 +171,20 @@ function tootpress_between_filter_apply($content) {
 	return $content;
 }
 
+/**
+ * Toot Content Filter
+ * 
+ * This filter can be used to manipulate the toot content
+ * 
+ * @since 0.5
+ * 
+ * @param string Content
+ * @return string Filtered Content
+ */
+
+function tootpress_toot_content_filter_apply($content) {
+	$content=apply_filters( 'tootpress_toot_content_filter', $content );	
+	return $content;
+}
+
 ?>

@@ -97,6 +97,7 @@ function tootpress_escaping_allowed_html() {
 			'class' => array(),
 			'href' => array(),
 			'rel' => array(),
+			'target' => array(),
 		),
 	);
 }

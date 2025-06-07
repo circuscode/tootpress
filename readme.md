@@ -267,7 +267,7 @@ This project is licensed under the GPL3 License.
 
 ## Changelog
 
-### 0.5 "xxx"
+### 0.5 "Echo"
 
 * Feature: Closing Filter
 * Feature: Move Forward Label Filter
@@ -276,6 +276,7 @@ This project is licensed under the GPL3 License.
 * Feature: After Loop Filter
 * Feature: Mastodon Logo Filter
 * Feature: Between Filter
+* Feature: Toot Content Filter
 
 ### 0.4 "Cassie Lang"
 
