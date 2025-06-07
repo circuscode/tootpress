@@ -279,6 +279,7 @@ This project is licensed under the GPL3 License.
 * Feature: Toot Content Filter
 * Feature: Date Filter
 * Feature: Image Filter
+* Security: Better Output Escaping
 
 ### 0.4 "Cassie Lang"
 

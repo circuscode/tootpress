@@ -31,13 +31,13 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media , $instance
 	$toot_html='';
 
 	// Toot ID as HTML Comment
-	$toot_html.='<!-- Toot ID '.$mastodon_id.'-->';
+	$toot_html.='<!-- Toot ID '.esc_html($mastodon_id).'-->';
 
 	// Toot Start
 	$toot_html.='<div class="tootpress-toot"/>';
 
 	// Toot Elephant
-	$toot_html.=tootpress_paint_elephant( $instance, $account, $mastodon_id,$backlink);
+	$toot_html.=tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink);
 
 	// Toot Date
 	$toot_html.=tootpress_paint_date($date);
