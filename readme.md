@@ -277,6 +277,7 @@ This project is licensed under the GPL3 License.
 * Feature: Mastodon Logo Filter
 * Feature: Between Filter
 * Feature: Toot Content Filter
+* Feature: Date Filter
 
 ### 0.4 "Cassie Lang"
 

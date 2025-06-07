@@ -187,4 +187,31 @@ function tootpress_toot_content_filter_apply($content) {
 	return $content;
 }
 
+/**
+ * Date Filter
+ * 
+ * This filter overwrites the date output with custom format
+ * 
+ * @since 0.5
+ * 
+ * @param string Date
+ * @return string Custom Format
+ */
+
+function tootpress_date_filter_apply($date) {
+
+	// 2023-05-30 22:40:28
+
+	$year=substr($date,0,4);
+	$month=substr($date,5,2);
+	$day=substr($date,8,2);
+	$hour=substr($date,11,2);
+	$minute=substr($date,14,2);
+	$second=substr($date,17,2);
+
+	$date=apply_filters( 'tootpress_date_filter', $date, $year, $month, $day, $hour, $minute, $second );
+
+	return $date;
+}
+
 ?>

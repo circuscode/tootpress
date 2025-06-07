@@ -40,18 +40,13 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media , $instance
 	$toot_html.=tootpress_paint_elephant( $instance, $account, $mastodon_id,$backlink);
 
 	// Toot Date
-	if(tootpress_is_language_german()) {
-		$date=tootpress_convert_mysqldate_to_german_format($date);
-	} else {
-		$date=tootpress_convert_mysqldate_to_international_format($date);
-	}
-
-	$toot_html.='<div class="toot-date"><p>'.esc_html($date).'</p></div>';
+	$toot_html.=tootpress_paint_date($date);
 
 	// Toot Content
 	$content=tootpress_remove_target_blank($content);
+	$content=wp_kses($content, tootpress_escaping_allowed_html() );
 	$content=tootpress_toot_content_filter_apply($content);
-	$toot_html.='<div class="toot-content">'.wp_kses($content, tootpress_escaping_allowed_html() ).'</div>';
+	$toot_html.='<div class="toot-content">'.$content.'</div>';
 
 	// Toot Image
 	if($media){
@@ -154,6 +149,38 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 	}
 
 	return $elephant_html;
+
+}
+
+/**
+ * Paint the Date 
+ * 
+ * @since 0.5
+ * 
+ * @param string Date (Format: )
+ * @return string html
+ */
+
+ function tootpress_paint_date($date) {
+
+	// 2023-05-30 22:40:28
+
+	$mysqldate=$date;
+
+	$date=tootpress_date_filter_apply($date);
+
+	if($mysqldate==$date) {
+
+		if(tootpress_is_language_german()) {
+			$date=tootpress_convert_mysqldate_to_german_format($date);
+		} else {
+			$date=tootpress_convert_mysqldate_to_international_format($date);
+		}
+
+	}
+
+	$date_html.='<div class="toot-date"><p>'.esc_html($date).'</p></div>';
+	return $date_html;
 
 }
 
