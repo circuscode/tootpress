@@ -87,6 +87,7 @@ function tootpress_escaping_allowed_html() {
 		'img' => array(
 			'src' => array(),
 			'alt' => array(),
+			'class' => array(),
 		),
         'br' => array(),
 		'strong' => array(),
@@ -97,7 +98,6 @@ function tootpress_escaping_allowed_html() {
 			'class' => array(),
 			'href' => array(),
 			'rel' => array(),
-			'target' => array(),
 		),
 	);
 }

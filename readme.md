@@ -278,6 +278,7 @@ This project is licensed under the GPL3 License.
 * Feature: Between Filter
 * Feature: Toot Content Filter
 * Feature: Date Filter
+* Feature: Image Filter
 
 ### 0.4 "Cassie Lang"
 

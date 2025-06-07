@@ -214,4 +214,24 @@ function tootpress_date_filter_apply($date) {
 	return $date;
 }
 
+/**
+ * Image Filter
+ * 
+ * This filter can be used to manipulate image tags
+ * 
+ * @since 0.5
+ * 
+ * @param string Image Tag
+ * @param int Amount of Images
+ * @param int Image Number
+ * @return string Filtered Image Tag
+ */
+
+function tootpress_image_filter_apply($img_tag,$amount_of_images,$image_number) {
+
+	$img_tag=apply_filters( 'tootpress_image_filter', $img_tag, $amount_of_images, $image_number);
+
+	return $img_tag;
+}
+
 ?>
