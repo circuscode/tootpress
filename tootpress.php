@@ -42,6 +42,9 @@ require_once('tootpress_set.php');
 require_once('tootpress_developer.php');
 require_once('tootpress_script.php');
 
+// Dev
+// require_once('tootpress_filter.php');
+
 // Ensure that all required functions are available during setup
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php');
 

@@ -267,30 +267,43 @@ function tootpress_amount_of_pages() {
 
  function tootpress_label_older_toots() {
 
+	$label='';
+
 	if(tootpress_is_language_german()) {
-		return 'Ältere Toots';
+		$label='Ältere Toots';
 	} else {
-		return 'Older Toots';
+		$label='Older Toots';
 	}
+
+	// Apply Filter
+	$label=tootpress_menu_backward_filter_apply($label);
+
+	return $label;
 
 }
 
 /**
- * Creates Newer Toots Label
+ * Create Newer Toots Label
  * 
  * @since 0.1
  * 
  * @return string Label
  */
 
- function tootpress_label_newer_toots() {
+function tootpress_label_newer_toots() {
+
+	$label='';
 
 	if(tootpress_is_language_german()) {
-		return 'Neuere Toots';
+		$label='Neuere Toots';
 	} else {
-		return 'Newer Toots';
+		$label='Newer Toots';
 	}
 
+	// Apply Filter
+	$label=tootpress_menu_forward_filter_apply($label);
+
+	return $label;
 }
 
 ?>

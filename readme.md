@@ -115,9 +115,9 @@ You can use the following code.
 
 ### Filter
 
-#### tootpress_preamble_add
+#### tootpress_preamble_filter
 
-This filter outputs html content before the toot loop.  
+This filter outputs html content before the initial toot loop.  
 You can use the following code.
 
     function tootpress_preamble_add( $preamble ) {
@@ -129,6 +129,66 @@ You can use the following code.
 
     }
     add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
+
+#### tootpress_closing_filter
+
+This filter outputs html content after the last toot loop.  
+You can use the following code.
+
+    function tootpress_closing_add( $content ) {
+
+        // Add your filter code here
+        // Example: $content='<p>Hello World.</p>';
+
+        return $content;
+
+    }
+    add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );
+
+#### tootpress_menu_forward_label
+
+This filter overwrites the forward label in the bottom navigation.  
+You can use the following code.
+
+    function tootpress_menu_forward_label_change( $label ) {
+    
+        // Add your filter code here
+        // Example: $label='Newer Posts';
+
+        return $label;
+
+    }
+    add_filter( 'tootpress_menu_forward_label', 'tootpress_menu_forward_label_change', 10, 1 );
+
+#### tootpress_menu_backward_label
+
+This filter overwrites the backward label in the bottom navigation. 
+You can use the following code.
+
+    function tootpress_menu_backward_label_change( $label ) {
+    
+        // Add your filter code here
+        // Example: $label='Older Posts';
+
+        return $label;
+
+    }
+    add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );
+
+#### tootpress_beforeloop_filter
+
+This filter outputs content before the toot loop (on all tootpress pages).
+You can use the following code.
+
+    function tootpress_beforeloop_filter_add( $content, $page_number ) {
+    
+        // Add your filter code here
+        // Example: $content='<p>Page '.$page_number.'</p>';
+
+        return $label;
+
+    }
+    add_filter( 'tootpress_beforeloop_filter', 'tootpress_beforeloop_filter_add', 10, 2 );
 
 ## WordPress Framework
 
@@ -206,6 +266,19 @@ This project is licensed under the GPL3 License.
 * [Official Plugin Page](https://www.unmus.de/tootpress/) (German)
 
 ## Changelog
+
+### 0.5 "Echo"
+
+* Feature: Closing Filter
+* Feature: Move Forward Label Filter
+* Feature: Move Backward Label Filter
+* Feature: Before Loop Filter
+* Feature: After Loop Filter
+* Feature: Mastodon Logo Filter
+* Feature: Between Filter
+* Feature: Toot Content Filter
+* Feature: Date Filter
+* Feature: Image Filter
 
 ### 0.4 "Cassie Lang"
 

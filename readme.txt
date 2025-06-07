@@ -116,7 +116,7 @@ You can use the following code.
 `}`
 `add_action('tootpress_toots_update', 'tootpress_toots_update_postprocessing');`
 
-**Filter: tootpress_preamble_add**  
+**Filter: tootpress_preamble_filter**  
 It outputs html content before the toot loop.  
 You can use the following code.
 
@@ -129,6 +129,62 @@ You can use the following code.
 ``
 `}`
 `add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );`
+
+**Filter: tootpress_closing_filter**  
+It outputs html content after the last toot loop.  
+You can use the following code.
+
+`function tootpress_closing_add( $content ) {`
+``
+`    // Add your filter code here`
+`    // Example: $content='<p>Hello World.</p>';`
+``
+`    return $content;`
+``
+`}`
+`add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );`
+
+**Filter: tootpress_menu_forward_label**  
+This filter overwrites the forward label in the bottom navigation.   
+You can use the following code.
+
+`function tootpress_menu_forward_label_change( $label ) {`
+``
+`    // Add your filter code here`
+`    // Example: $label='Newer Posts';`
+``
+`    return $label;`
+``
+`}`
+`add_filter( 'tootpress_menu_forward_label', 'tootpress_menu_forward_label_change', 10, 1 );`
+
+**Filter: tootpress_menu_backward_label**  
+This filter overwrites the backward label in the bottom navigation.   
+You can use the following code.
+
+`function tootpress_menu_backward_label_change( $label ) {`
+``
+`    // Add your filter code here`
+`    // Example: $label='Older Posts';`
+``
+`    return $label;`
+``
+`}`
+`add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );`
+
+**Filter: tootpress_beforeloop_filter**  
+This filter outputs content before the toot loop (on all tootpress pages).  
+You can use the following code.
+
+`function tootpress_beforeloop_filter_add( $content, $page_number ) {`
+``
+`    // Add your filter code here`
+`    // Example: $content='<p>Page '.$page_number.'</p>';`
+``
+`    return $label;`
+``
+`}`
+`add_filter( 'tootpress_beforeloop_filter', 'tootpress_beforeloop_filter_add', 10, 2 );`
 
 = Related Links =
 
