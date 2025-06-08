@@ -44,6 +44,9 @@ function tootpress_get_query_var() {
 	// If Query Var is not set
 	if ($qvar=="") {$qvar="1";}
 
+	// Security
+	$qvar=(int)$qvar;
+
 	return $qvar;
   
 }

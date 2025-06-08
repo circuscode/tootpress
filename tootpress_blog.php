@@ -94,7 +94,7 @@ function tootpress_paint_image($tootid){
 		}
 		
 		$image_html.='">';
-		$image_html.=tootpress_paint_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$amount_of_images,($i+1));
+		$image_html.=tootpress_paint_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$toot_image[$i]['attachment_width'],$toot_image[$i]['attachment_height'],$amount_of_images,($i+1));
 		$image_html.='</div>';
 
 	}
@@ -109,20 +109,22 @@ function tootpress_paint_image($tootid){
  * 
  * @param string Image File Name
  * @param string Image Description
+ * @param int Image Width
+ * @param int Image Height
  * @param int Amount of Images
  * @param int Image Number
  * @return string Image Tag
  */
 
-function tootpress_paint_image_tag($filename, $description, $amount_of_images, $image_number) {
+function tootpress_paint_image_tag($filename, $description, $width, $height, $amount_of_images, $image_number) {
 
 		$image_tag='<img ';
 		$image_tag.='src="';
-		$image_tag.=tootpress_get_url_image_directory();
-		$image_tag.=$filename;
+		$image_tag.=esc_url(tootpress_get_url_image_directory());
+		$image_tag.=esc_html($filename);
 		$image_tag.='" ';
 		$image_tag.='alt="';
-		$image_tag.=$description;
+		$image_tag.=esc_html($description);
 		//$image_tag.='" ';
 		//$image_tag.='width="';
 		//$image_tag.=$toot_image[0]['attachment_width'];
@@ -131,7 +133,7 @@ function tootpress_paint_image_tag($filename, $description, $amount_of_images, $
 		//$image_html.=$toot_image[0]['attachment_height'];
 		$image_tag.='" />';
 
-		$image_tag=tootpress_image_filter_apply($image_tag,$amount_of_images,$image_number);
+		$image_tag=tootpress_image_filter_apply($image_tag,$filename,$description, $width,$height,tootpress_get_url_image_directory(),$amount_of_images,$image_number);
 
 		return $image_tag;
 

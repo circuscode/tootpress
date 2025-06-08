@@ -38,12 +38,13 @@ function tootpress_fire_toots_update() {
  * 
  * @since 0.4
  * 
- * @param string Empty
- * @return string Filtered Preample
+ * @param string Preamble
+ * @return html Filtered Preamble
  */
 
 function tootpress_preamble_filter_apply($preamble) {
 	$preamble=apply_filters( 'tootpress_preamble_filter', $preamble );
+	$preamble=wp_kses_post($preamble);
 	return $preamble;
 }
 
@@ -54,12 +55,13 @@ function tootpress_preamble_filter_apply($preamble) {
  * 
  * @since 0.5
  * 
- * @param string Empty
- * @return string Filtered Content
+ * @param string Closing
+ * @return html Filtered Closing
  */
 
 function tootpress_closing_filter_apply($content) {
 	$content=apply_filters( 'tootpress_closing_filter', $content );
+	$content=wp_kses_post($content);
 	return $content;
 }
 
@@ -76,6 +78,7 @@ function tootpress_closing_filter_apply($content) {
 
 function tootpress_menu_forward_filter_apply($label) {
 	$label=apply_filters( 'tootpress_menu_forward_label', $label );
+	$label=esc_html($label);
 	return $label;
 }
 
@@ -86,12 +89,13 @@ function tootpress_menu_forward_filter_apply($label) {
  * 
  * @since 0.5
  * 
- * @param string Original Backward
+ * @param string Original Label
  * @return string New Label
  */
 
 function tootpress_menu_backward_filter_apply($label) {
 	$label=apply_filters( 'tootpress_menu_backward_label', $label );
+	$label=esc_html($label);
 	return $label;
 }
 
@@ -103,9 +107,9 @@ function tootpress_menu_backward_filter_apply($label) {
  * 
  * @since 0.5
  * 
- * @param string empty
+ * @param string Content
  * @param int TootPress Current Page Number
- * @return string Content
+ * @return html Content
  */
 
 function tootpress_beforeloop_filter_apply($content, $current_page_number) {
@@ -113,6 +117,8 @@ function tootpress_beforeloop_filter_apply($content, $current_page_number) {
 	$last_page_number=tootpress_amount_of_pages();
 
 	$content=apply_filters( 'tootpress_beforeloop_filter', $content, $current_page_number, $last_page_number );
+
+	$content=wp_kses_post($content);
 
 	return $content;
 }
@@ -125,9 +131,9 @@ function tootpress_beforeloop_filter_apply($content, $current_page_number) {
  * 
  * @since 0.5
  * 
- * @param string empty
+ * @param string Content
  * @param int TootPress Current Page Number
- * @return string Content
+ * @return html Content
  */
 
 function tootpress_afterloop_filter_apply($content, $current_page_number) {
@@ -135,6 +141,8 @@ function tootpress_afterloop_filter_apply($content, $current_page_number) {
 	$last_page_number=tootpress_amount_of_pages();
 
 	$content=apply_filters( 'tootpress_afterloop_filter', $content, $current_page_number, $last_page_number );
+
+	$content=wp_kses_post($content);
 
 	return $content;
 }
@@ -146,12 +154,13 @@ function tootpress_afterloop_filter_apply($content, $current_page_number) {
  * 
  * @since 0.5
  * 
- * @param string img HTML Tag (Mastodon Logo)
- * @return string img HTML Tag (Custom Logo)
+ * @param html Mastodon Logo
+ * @return html Custom Logo
  */
 
 function tootpress_mastodon_logo_filter_apply($img) {
 	$img=apply_filters( 'tootpress_mastodon_logo_filter', $img );
+	$img=wp_kses_post($img);
 	return $img;
 }
 
@@ -162,12 +171,13 @@ function tootpress_mastodon_logo_filter_apply($img) {
  * 
  * @since 0.5
  * 
- * @param string Empty
- * @return string Between Content
+ * @param string Content
+ * @return html Between Content
  */
 
 function tootpress_between_filter_apply($content) {
 	$content=apply_filters( 'tootpress_between_filter', $content );	
+	$content=wp_kses_post($content);
 	return $content;
 }
 
@@ -178,12 +188,13 @@ function tootpress_between_filter_apply($content) {
  * 
  * @since 0.5
  * 
- * @param string Content
- * @return string Filtered Content
+ * @param html Content
+ * @return html Filtered Content
  */
 
 function tootpress_toot_content_filter_apply($content) {
-	$content=apply_filters( 'tootpress_toot_content_filter', $content );	
+	$content=apply_filters( 'tootpress_toot_content_filter', $content );
+	$content=wp_kses_post($content);	
 	return $content;
 }
 
@@ -211,6 +222,8 @@ function tootpress_date_filter_apply($date) {
 
 	$date=apply_filters( 'tootpress_date_filter', $date, $year, $month, $day, $hour, $minute, $second );
 
+	$date=esc_html($date);
+
 	return $date;
 }
 
@@ -221,15 +234,22 @@ function tootpress_date_filter_apply($date) {
  * 
  * @since 0.5
  * 
- * @param string Image Tag
+ * @param html Image Tag
+ * @param string Image File Name
+ * @param string Image Description
+ * @param int Image Width
+ * @param int Image Height
+ * @param url TootPress Image Directory
  * @param int Amount of Images
  * @param int Image Number
- * @return string Filtered Image Tag
+ * @return html Filtered Image Tag
  */
 
-function tootpress_image_filter_apply($img_tag,$amount_of_images,$image_number) {
+function tootpress_image_filter_apply($img_tag,$filename,$description,$width,$height,$image_directory_path,$amount_of_images,$image_number) {
 
-	$img_tag=apply_filters( 'tootpress_image_filter', $img_tag, $amount_of_images, $image_number);
+	$img_tag=apply_filters( 'tootpress_image_filter',$img_tag,$filename,$description,$width,$height,$image_directory_path,$amount_of_images,$image_number);
+
+	$img_tag=wp_kses_post($img_tag);	
 
 	return $img_tag;
 }
