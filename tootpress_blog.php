@@ -44,13 +44,12 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media , $instance
 
 	// Toot Content
 	$content=tootpress_remove_target_blank($content);
-	$content=wp_kses($content, tootpress_escaping_allowed_html() );
-	$content=tootpress_toot_content_filter_apply($content);
-	$toot_html.='<div class="toot-content">'.$content.'</div>';
+	$content=tootpress_toot_content_filter_apply($content);	
+	$toot_html.='<div class="toot-content">'.wp_kses_post($content).'</div>';
 
 	// Toot Image
 	if($media){
-		$toot_html.=wp_kses(tootpress_paint_image($mastodon_id), tootpress_escaping_allowed_html() );
+		$toot_html.=tootpress_paint_image($mastodon_id);
 	}
 
 	// Toot End
@@ -87,15 +86,15 @@ function tootpress_paint_image($tootid){
 		if($amount_of_images>1) {
 			// Galleries
 			$image_html.='toot-image-gallery ';
-			$image_html.='toot-image-gallery-'.$amount_of_images.' ';
-			$image_html.='toot-image-'.($i+1);
+			$image_html.='toot-image-gallery-'.(int) $amount_of_images.' ';
+			$image_html.='toot-image-'.(int) ($i+1);
 		} else {
 			// Single Images
 			$image_html.='toot-image-single ';
 		}
 		
 		$image_html.='">';
-		$image_html.=tootpress_create_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$amount_of_images,($i+1));
+		$image_html.=tootpress_paint_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$amount_of_images,($i+1));
 		$image_html.='</div>';
 
 	}
@@ -115,7 +114,7 @@ function tootpress_paint_image($tootid){
  * @return string Image Tag
  */
 
-function tootpress_create_image_tag($filename, $description, $amount_of_images, $image_number) {
+function tootpress_paint_image_tag($filename, $description, $amount_of_images, $image_number) {
 
 		$image_tag='<img ';
 		$image_tag.='src="';

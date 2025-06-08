@@ -87,7 +87,6 @@ function tootpress_escaping_allowed_html() {
 		'img' => array(
 			'src' => array(),
 			'alt' => array(),
-			'class' => array(),
 		),
         'br' => array(),
 		'strong' => array(),
