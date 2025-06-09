@@ -77,27 +77,36 @@ function tootpress_paint_image($tootid){
 	// Amount of Images
 	$amount_of_images=sizeof($toot_image);
 
-	for($i=0;$i<$amount_of_images;$i++) {
+	// DOM Structure
+	$image_html.='<div class="toot-image">';
+	$image_html.='<div class="';
+	if($amount_of_images>1) {
+		$image_html.='toot-gallery ';
+		$image_html.='toot-gallery-size-'.(int) $amount_of_images;
+	} else {
+		$image_html.='toot-image-single';
+	}
+	$image_html.='">';
 
-		// Image Content
-		$image_html.='<div class="toot-image ';
+	for($i=0;$i<$amount_of_images;$i++) {
 
 		// Classes
 		if($amount_of_images>1) {
 			// Galleries
-			$image_html.='toot-image-gallery ';
-			$image_html.='toot-image-gallery-'.(int) $amount_of_images.' ';
-			$image_html.='toot-image-'.(int) ($i+1);
-		} else {
-			// Single Images
-			$image_html.='toot-image-single ';
-		}
+			$image_html.='<div class="';
+			$image_html.='toot-gallery-image toot-gallery-image-'.(int) ($i+1);
+			$image_html.='">';
+		} 
 		
-		$image_html.='">';
+		// Image Tag
 		$image_html.=tootpress_paint_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$toot_image[$i]['attachment_width'],$toot_image[$i]['attachment_height'],$amount_of_images,($i+1));
-		$image_html.='</div>';
+
+		// Galleries
+		if($amount_of_images>1) {$image_html.='</div>';}
 
 	}
+
+	$image_html.='</div></div>';
 
 	return $image_html;
 }
@@ -118,6 +127,10 @@ function tootpress_paint_image($tootid){
 
 function tootpress_paint_image_tag($filename, $description, $width, $height, $amount_of_images, $image_number) {
 
+		// ALT
+		if($description==FALSE) {$description='Sorry! No image description created.';}
+
+		// Image Tag
 		$image_tag='<img ';
 		$image_tag.='src="';
 		$image_tag.=esc_url(tootpress_get_url_image_directory());
@@ -133,6 +146,7 @@ function tootpress_paint_image_tag($filename, $description, $width, $height, $am
 		//$image_html.=$toot_image[0]['attachment_height'];
 		$image_tag.='" />';
 
+		// Filter
 		$image_tag=tootpress_image_filter_apply($image_tag,$filename,$description, $width,$height,tootpress_get_url_image_directory(),$amount_of_images,$image_number);
 
 		return $image_tag;
@@ -153,7 +167,7 @@ function tootpress_paint_image_tag($filename, $description, $width, $height, $am
 
 function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink) {
 
-	$elephant_html='';
+	$elephant_html='<div class="toot-symbol">';
 	$url='https://'.$instance.'/@'.$account.'/'.$mastodon_id;
 
 	if($backlink) {
@@ -163,13 +177,15 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 	}
 
 	// The Elephant
-	$elephant_img='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	$elephant_img='<img src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
 	$elephant_img=tootpress_mastodon_logo_filter_apply($elephant_img);
 	$elephant_html.=$elephant_img;
 
 	if($backlink) {
 		$elephant_html.='</a>';
 	}
+
+	$elephant_html.='</div>';
 
 	return $elephant_html;
 

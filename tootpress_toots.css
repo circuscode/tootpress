@@ -7,7 +7,7 @@ TootPress CSS @ Blog
     clear:both;
 }
 
-.tootpress-toot-symbol {
+.toot-symbol {
     float:left !important;
     margin-top:5px;
 }
@@ -32,7 +32,7 @@ TootPress CSS @ Blog
     max-width: 100%;
 }
 
-.toot-image-gallery {
+.toot-gallery-image {
     margin-bottom:5px;
 }
 
