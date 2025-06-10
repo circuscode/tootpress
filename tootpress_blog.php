@@ -73,11 +73,9 @@ function tootpress_paint_image($tootid){
 	$toot_image=array();
 	$toot_image=tootpress_get_media_from_database($tootid);
 	$image_html='';
-
-	// Amount of Images
 	$amount_of_images=sizeof($toot_image);
 
-	// DOM Structure
+	// DOM
 	$image_html.='<div class="toot-image">';
 	$image_html.='<div class="';
 	if($amount_of_images>1) {
@@ -88,11 +86,11 @@ function tootpress_paint_image($tootid){
 	}
 	$image_html.='">';
 
+	// Image Loop
 	for($i=0;$i<$amount_of_images;$i++) {
 
-		// Classes
+		// Gallery
 		if($amount_of_images>1) {
-			// Galleries
 			$image_html.='<div class="';
 			$image_html.='toot-gallery-image toot-gallery-image-'.(int) ($i+1);
 			$image_html.='">';
@@ -101,7 +99,7 @@ function tootpress_paint_image($tootid){
 		// Image Tag
 		$image_html.=tootpress_paint_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$toot_image[$i]['attachment_width'],$toot_image[$i]['attachment_height'],$amount_of_images,($i+1));
 
-		// Galleries
+		// Close
 		if($amount_of_images>1) {$image_html.='</div>';}
 
 	}
@@ -122,18 +120,19 @@ function tootpress_paint_image($tootid){
  * @param int Image Height
  * @param int Amount of Images
  * @param int Image Number
- * @return string Image Tag
+ * @return html Image Tag
  */
 
 function tootpress_paint_image_tag($filename, $description, $width, $height, $amount_of_images, $image_number) {
 
-		// ALT
+		// Preparation
 		if($description==FALSE) {$description='Sorry! No image description created.';}
+		$image_dir=tootpress_get_url_image_directory();
 
 		// Image Tag
 		$image_tag='<img ';
 		$image_tag.='src="';
-		$image_tag.=esc_url(tootpress_get_url_image_directory());
+		$image_tag.=esc_url($image_dir);
 		$image_tag.=esc_html($filename);
 		$image_tag.='" ';
 		$image_tag.='alt="';
@@ -147,7 +146,7 @@ function tootpress_paint_image_tag($filename, $description, $width, $height, $am
 		$image_tag.='" />';
 
 		// Filter
-		$image_tag=tootpress_image_filter_apply($image_tag,$filename,$description, $width,$height,tootpress_get_url_image_directory(),$amount_of_images,$image_number);
+		$image_tag=tootpress_image_filter_apply($image_tag,$filename,$description, $width,$height,$image_dir,$amount_of_images,$image_number);
 
 		return $image_tag;
 
@@ -162,7 +161,7 @@ function tootpress_paint_image_tag($filename, $description, $width, $height, $am
  * @param string Mastodon Account
  * @param int Mastodon Toot ID
  * @param int Backlink Option
- * @return string html
+ * @return html Elephant
  */
 
 function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink) {
@@ -224,12 +223,12 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 }
 
 /**
- * Creates the Preamble 
+ * Create the Preamble 
  * 
  * @since 0.4
  * 
  * @param int TootPress Current Page
- * @return string html
+ * @return html Preamble
  */
 
  function tootpress_paint_preamble($tootpress_current_page) {
@@ -251,12 +250,12 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 }
 
 /**
- * Creates the Closing Filter Content 
+ * Create the Closing
  * 
  * @since 0.5
  * 
  * @param int TootPress Current Page
- * @return string Content
+ * @return html Content
  */
 
  function tootpress_paint_closing($tootpress_current_page) {
@@ -285,7 +284,7 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
  * 
  * @param string empty
  * @param int TootPress Current Page
- * @return string Content
+ * @return html Content
  */
 
 function tootpress_paint_beforeloop($tootpress_current_page) {
@@ -308,7 +307,7 @@ function tootpress_paint_beforeloop($tootpress_current_page) {
  * 
  * @param string empty
  * @param int TootPress Current Page
- * @return string Content
+ * @return html Content
  */
 
 function tootpress_paint_afterloop($tootpress_current_page) {
@@ -330,7 +329,7 @@ function tootpress_paint_afterloop($tootpress_current_page) {
  * @since 0.5
  * 
  * @param int Open Loops
- * @return string Between Element
+ * @return html Between Element
  */
 
 function tootpress_paint_between($open_loops) {
