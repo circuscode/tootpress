@@ -147,7 +147,7 @@ You can use the following code.
 
 #### tootpress_menu_forward_label
 
-This filter overwrites the forward label in the bottom navigation.  
+This filter overwrites the forward label in the bottom navigation.
 You can use the following code.
 
     function tootpress_menu_forward_label_change( $label ) {
@@ -162,7 +162,7 @@ You can use the following code.
 
 #### tootpress_menu_backward_label
 
-This filter overwrites the backward label in the bottom navigation. 
+This filter overwrites the backward label in the bottom navigation.
 You can use the following code.
 
     function tootpress_menu_backward_label_change( $label ) {
@@ -395,6 +395,7 @@ This project is licensed under the GPL3 License.
 
 ### 0.5 "Echo"
 
+* July 2025
 * Feature: Closing Filter
 * Feature: Move Forward Label Filter
 * Feature: Move Backward Label Filter
