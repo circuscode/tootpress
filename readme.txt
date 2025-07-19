@@ -228,7 +228,7 @@ You can use the following code.
 ``
 `    return $content;`
 ``
-`}
+`}`
 `add_filter( 'tootpress_between_filter', 'tootpress_create_element_between', 10, 1 );`
 
 **Filter: tootpress_toot_content_filter**
@@ -242,7 +242,7 @@ You can use the following code.
 ``
 `    return $content;`
 ``
-`}
+`}`
 `add_filter( 'tootpress_toot_content_filter', 'tootpress_manipulate_content', 10, 1 );`
 
 **Filter: tootpress_date_filter**
@@ -264,7 +264,7 @@ You can use the following code.
 ``
 `    return $date;`
 ``
-`}
+`}`
 `add_filter( 'tootpress_date_filter', 'tootpress_date_custom_format', 10, 7 );`
 
 **Filter: tootpress_image_filter**
@@ -287,7 +287,7 @@ You can use the following code.
 ``  
 `    return $img_tag;`
 ``
-`}
+`}`
 `add_filter( 'tootpress_image_filter', 'tootpress_image_manipulate', 1, 8 );`
 
 = Related Links =
