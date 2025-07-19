@@ -127,7 +127,7 @@ if (!defined('ABSPATH')) { exit; }
 	// Required to build the backlinks
 	$mastodon_account_name=tootpress_get_mastodon_account_name();
 	if ($mastodon_account_name) {
-		$output.='Mastodon Account Name has been retrieved: @'.$mastodon_account_name;
+		$output.='Mastodon Account Name has been retrieved: @'.esc_html($mastodon_account_name);
   	} else {
 		$output.='<span class="tootpress-healtycheck-warning">&nbsp;Warning:&nbsp;</span> Mastodon Account Name could not be retrieved.';
   	}

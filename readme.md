@@ -16,7 +16,7 @@ TootPress copies your toots from Mastodon to WordPress continuously. The toots c
 
 ## Installation
 
-1. Download the plugin from the GitHub Repository (see latest Release)
+1. Download the plugin from the GitHub Repository (latest Release)
 2. Rename the downloaded folder to "tootpress"
 2. Upload the folder to the WordPress Plugin Directory
 3. Activate the plugin in WordPress
@@ -66,8 +66,8 @@ Following toot objects are not supported.
 * Audio
 * Video
 * Poll
-* Emojis
 * Teaser
+* Quotes
 
 ## Excluded Toot Types
 
@@ -115,9 +115,9 @@ You can use the following code.
 
 ### Filter
 
-#### tootpress_preamble_add
+#### tootpress_preamble_filter
 
-This filter outputs html content before the toot loop.  
+This filter outputs html content before the initial toot loop.  
 You can use the following code.
 
     function tootpress_preamble_add( $preamble ) {
@@ -129,6 +129,176 @@ You can use the following code.
 
     }
     add_filter( 'tootpress_preamble_filter', 'tootpress_preamble_add', 10, 1 );
+
+#### tootpress_closing_filter
+
+This filter outputs html content after the last toot loop.  
+You can use the following code.
+
+    function tootpress_closing_add( $content ) {
+
+        // Add your filter code here
+        // Example: $content='<p>Hello World.</p>';
+
+        return $content;
+
+    }
+    add_filter( 'tootpress_closing_filter', 'tootpress_closing_add', 10, 1 );
+
+#### tootpress_menu_forward_label
+
+This filter overwrites the forward label in the bottom navigation.
+You can use the following code.
+
+    function tootpress_menu_forward_label_change( $label ) {
+    
+        // Add your filter code here
+        // Example: $label='Newer Posts';
+
+        return $label;
+
+    }
+    add_filter( 'tootpress_menu_forward_label', 'tootpress_menu_forward_label_change', 10, 1 );
+
+#### tootpress_menu_backward_label
+
+This filter overwrites the backward label in the bottom navigation.
+You can use the following code.
+
+    function tootpress_menu_backward_label_change( $label ) {
+    
+        // Add your filter code here
+        // Example: $label='Older Posts';
+
+        return $label;
+
+    }
+    add_filter( 'tootpress_menu_backward_label', 'tootpress_menu_backward_label_change', 10, 1 );
+
+#### tootpress_beforeloop_filter
+
+This filter outputs content before the toot loop (on all tootpress pages).
+You can use the following code.
+
+    function tootpress_beforeloop_add( $content, $current_page_number, $last_page_number ) {
+
+		// Add your filter code here
+		// Example: $content='<p>Page '.$current_page_number.' of '.$last_page_number.'</p>';
+ 
+ 		return $content;
+
+    }
+    add_filter( 'tootpress_beforeloop_filter', 'tootpress_beforeloop_add', 10, 3 );
+
+#### tootpress_afterloop_filter
+
+This filter outputs content after the toot loop (on all tootpress pages).
+You can use the following code.
+
+    function tootpress_afterloop_add( $content, $current_page_number, $last_page_number ) {
+
+		// Add your filter code here
+		// Example: $content='<p>Page '.$current_page_number.' of '.$last_page_number.'</p>';
+ 
+ 		return $content;
+
+    }
+    add_filter( 'tootpress_afterloop_filter', 'tootpress_afterloop_add', 10, 3 );
+
+#### tootpress_mastodon_logo_filter
+
+This filter overwrites the Mastodon Logo with Custom Logo.
+You can use the following code.
+
+    function tootpress_mastodon_logo_change ( $img ) {
+
+	    // Standard Value
+	    // <img class="toot-symbol" src="FILE-URL" alt="Toot Symbol" width="35" height="37"/>
+
+	    // Add your filter code here
+	    // Example: $img='<img class="toot-symbol" src="FILE-URL" alt="Custom Toot Symbol" width="32" height="32"/>';
+ 
+ 	    return $img;
+
+    }
+    add_filter( 'tootpress_mastodon_logo_filter', 'tootpress_mastodon_logo_change', 10, 1 );
+
+#### tootpress_between_filter
+
+This filter adds custom HTML between the toots.
+You can use the following code.
+
+    function tootpress_create_element_between ( $content ) {
+ 
+        // Add your filter code here
+ 	    // $content='<hr/>';
+ 
+ 	    return $content;
+
+    }
+    add_filter( 'tootpress_between_filter', 'tootpress_create_element_between', 10, 1 );
+
+#### tootpress_toot_content_filter
+
+This filter can be used to manipulate the toot content.
+You can use the following code.
+
+    function tootpress_manipulate_content ( $content ) {
+
+        // Add your filter code here
+        // $content=str_replace('href=','target="_blank" href=',$content); 
+    
+        return $content;
+
+    }
+    add_filter( 'tootpress_toot_content_filter', 'tootpress_manipulate_content', 10, 1 );
+
+#### tootpress_date_filter
+
+This filter overwrites the date output with custom format.
+You can use the following code.
+
+    function tootpress_date_custom_format ( $date, $year, $month, $day, $hour, $minute, $second ) {
+
+        // $date = 2023-05-30 22:40:28
+        // $year = 2023
+        // $month = 05
+        // $day = 30
+        // $hour = 22
+        // $minute = 40
+        // $second = 28
+
+        // Add your filter code here
+        // $date=$day.'.'.$month.'.'.$year.' '.$hour.':'.$minute.':'.$second;
+    
+        return $date;
+
+    }
+    add_filter( 'tootpress_date_filter', 'tootpress_date_custom_format', 10, 7 );
+
+#### tootpress_image_filter
+
+This filter can be used to manipulate image tags.
+You can use the following code.
+
+    function tootpress_image_manipulate ($img_tag,$filename,$description,$width,$height,$image_directory_path,$amount_of_images,$image_number) {
+
+        // Amount of Images
+        // ----------------
+        // 1 = Single Image
+        // >1 = Gallery + Size of Gallery
+
+        // Image Number
+        // ------------
+        // This number indicates position within the gallery
+
+        // Add your filter code here
+        // $img_tag=str_replace('alt=','class="tootpress-image" alt=',$img_tag); 
+        
+        return $img_tag;
+
+    }
+    add_filter( 'tootpress_image_filter', 'tootpress_image_manipulate', 1, 8 );
 
 ## WordPress Framework
 
@@ -169,6 +339,22 @@ Backlinks to Mastodon can be activated in the plugin settings. In this case, the
 
 No. TootPress does not support the WordPress Multisite Feature. The plugin is working on the master-site, but is not working on all other child sites within the wordpress network.
 
+### Are the toots included in the WordPress Search?
+
+Unfortunately not.
+
+### Is there any possiblity to modify the outputs on the user interface?
+
+Almost every content element, which is created by TootPress in the FrontEnd, can be modified. For example, you can replace the Mastodon Logo with another image. Enabeling this, the plugin is providing a bunch of filters. Please read the documentation of the filter above.
+
+### Does TootPress recognize, if a published Toot was edited on Mastodon?
+
+The plugin does not sync the Toots between Mastodon and WordPress. TootPress is copying the toots just once after they are published on Mastodon. So if a published toot is edited on Mastodon later, TootPress does not recognized this change anymore, if the toot was already copied to WordPress. Reflecting the edit in WordPress there is only the possibility to make the same edit again directly in the WordPress database. The toots are stored in the table tootpress_toots.
+
+### Can toots be loaded from several Mastodon instances?
+
+No. The plugin does currently not support several Mastodon instances. The architecture is designed to load toots from one single instance. Independent from this, if your toot history is spread over several instances and the timelines does not overlap, you can try to load the timelines one after another. This is not officially supported or tested, but based on user feedback this seems to work surprisingly.
+
 ## Maturity Grade
 
 * Low maturity level
@@ -206,6 +392,23 @@ This project is licensed under the GPL3 License.
 * [Official Plugin Page](https://www.unmus.de/tootpress/) (German)
 
 ## Changelog
+
+### 0.5 "Echo"
+
+* July 2025
+* Feature: Closing Filter
+* Feature: Move Forward Label Filter
+* Feature: Move Backward Label Filter
+* Feature: Before Loop Filter
+* Feature: After Loop Filter
+* Feature: Mastodon Logo Filter
+* Feature: Between Filter
+* Feature: Toot Content Filter
+* Feature: Date Filter
+* Feature: Image Filter
+* Changed: DOM Structure
+* Renamed: CSS Classes
+* Security: Better Output Escaping
 
 ### 0.4 "Cassie Lang"
 

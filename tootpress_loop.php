@@ -35,8 +35,17 @@ function tootpress_content($content) {
         // TootPress Preamble
         $tootpress_content.=tootpress_paint_preamble($tootpress_current_page);
 
+        // TootPress Before Loop
+        $tootpress_content.=tootpress_paint_beforeloop($tootpress_current_page);
+
         // TootPress Loop
         $tootpress_content.=tootpress_loop($tootpress_current_page);
+
+        // TootPress After Loop
+        $tootpress_content.=tootpress_paint_afterloop($tootpress_current_page);
+
+        // TootPress Closing
+        $tootpress_content.=tootpress_paint_closing($tootpress_current_page);
 
         // TootPress Bottom Navigation
         $tootpress_content.=tootpress_create_menu($tootpress_current_page);
@@ -71,6 +80,7 @@ add_filter ('the_content', 'tootpress_content');
     $toot_cache=array();
     $toot_cache=tootpress_get_toots_from_database($amount_toots_page, $range);
     $amount_toots_cache=count($toot_cache);
+    $open_loops=$amount_toots_cache;
 
     // Get Configuration
     $mastodon_instance=tootpress_get_mastodon_instance();
@@ -85,6 +95,12 @@ add_filter ('the_content', 'tootpress_content');
             // Paint
             $tootloop.=tootpress_paint_toot( $toot['toot_mastodon_id'], $toot['toot_date'], $toot['toot_content'], $toot['toot_media'], $mastodon_instance, $mastodon_account, $tootpress_backlink);
     
+            // Between Filter
+            $tootloop.=tootpress_paint_between($open_loops);
+            
+            // -1
+            $open_loops=($open_loops-1);
+
         }
 
     }

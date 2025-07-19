@@ -65,7 +65,7 @@ function tootpress_generate_nav_standard($current_page) {
 	if($current_page>1) {
 
 		$menu_html.='<a href="';
-		$menu_html.=tootpress_blog_url();
+		$menu_html.=esc_url(tootpress_blog_url());
 		if($current_page==2) {
 			// Special Case: Page 2
 			$menu_html.='"';
@@ -73,18 +73,18 @@ function tootpress_generate_nav_standard($current_page) {
 			// Page 3 to n
 			if($is_perma_enabled) {
 				// Perma
-				$menu_html.=($current_page-1);
+				$menu_html.=(int)($current_page-1);
 				$menu_html.='/"';
 			} else {
 				// Simple
 				$menu_html.='&tootpress=';
-				$menu_html.=($current_page-1);
+				$menu_html.=(int)($current_page-1);
 				$menu_html.='"';
 			}
 		}
 		$menu_html.='class="tootpress_nav_standard_newer_toots"';
 		$menu_html.='>';
-		$menu_html.=tootpress_label_newer_toots();
+		$menu_html.=esc_html(tootpress_label_newer_toots());
 		$menu_html.='</a>';
 		
 	}
@@ -93,20 +93,20 @@ function tootpress_generate_nav_standard($current_page) {
 	if($current_page<$amount_of_pages) {
 
 		$menu_html.='<a href="';
-		$menu_html.=tootpress_blog_url();
+		$menu_html.=esc_url(tootpress_blog_url());
 		if($is_perma_enabled) {
 			// Perma
-			$menu_html.=($current_page+1);
+			$menu_html.=(int)($current_page+1);
 			$menu_html.='/" ';
 		} else {
 			// Simple
 			$menu_html.='&tootpress=';
-			$menu_html.=($current_page+1);
+			$menu_html.=(int)($current_page+1);
 			$menu_html.='" ';
 		}
 		$menu_html.='class="tootpress_nav_standard_older_toots"';
 		$menu_html.='>';
-		$menu_html.=tootpress_label_older_toots();
+		$menu_html.=esc_html(tootpress_label_older_toots());
 		$menu_html.='</a>';
 		
 	}
@@ -136,24 +136,24 @@ function tootpress_generate_nav_standard($current_page) {
 
 		if(tootpress_nav_numbers_condition_number($current_number, $current_page, $amount_of_pages)) {
 			$menu_html.='<a href="';
-			$menu_html.=tootpress_blog_url();
+			$menu_html.=esc_url(tootpress_blog_url());
 			if($i==0) {
 				$menu_html.='" '; // Special Case Number 1 (Perma & Simple)
 			}else{
 				if($is_perma_enabled){
 					// Perma
-					$menu_html.=($current_number);
+					$menu_html.=(int)($current_number);
 					$menu_html.='/" ';
 				} else {
 					// Simple
 					$menu_html.='&tootpress=';
-					$menu_html.=($current_number).'" ';
+					$menu_html.=(int)($current_number).'" ';
 				}
 			}
 			$menu_html.='class="tootpress_nav_number ';
 			if($current_page==($current_number)) {$menu_html.=' active'; }
 			$menu_html.='">';
-			$menu_html.=$current_number;
+			$menu_html.=(int)$current_number;
 			$menu_html.='</a>';
 		}
 		
@@ -267,30 +267,43 @@ function tootpress_amount_of_pages() {
 
  function tootpress_label_older_toots() {
 
+	$label='';
+
 	if(tootpress_is_language_german()) {
-		return 'Ältere Toots';
+		$label='Ältere Toots';
 	} else {
-		return 'Older Toots';
+		$label='Older Toots';
 	}
+
+	// Apply Filter
+	$label=tootpress_menu_backward_filter_apply($label);
+
+	return $label;
 
 }
 
 /**
- * Creates Newer Toots Label
+ * Create Newer Toots Label
  * 
  * @since 0.1
  * 
  * @return string Label
  */
 
- function tootpress_label_newer_toots() {
+function tootpress_label_newer_toots() {
+
+	$label='';
 
 	if(tootpress_is_language_german()) {
-		return 'Neuere Toots';
+		$label='Neuere Toots';
 	} else {
-		return 'Newer Toots';
+		$label='Newer Toots';
 	}
 
+	// Apply Filter
+	$label=tootpress_menu_forward_filter_apply($label);
+
+	return $label;
 }
 
 ?>

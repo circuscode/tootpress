@@ -31,30 +31,25 @@ function tootpress_paint_toot( $mastodon_id, $date, $content, $media , $instance
 	$toot_html='';
 
 	// Toot ID as HTML Comment
-	$toot_html.='<!-- Toot ID '.$mastodon_id.'-->';
+	$toot_html.='<!-- Toot ID '.esc_html($mastodon_id).'-->';
 
 	// Toot Start
 	$toot_html.='<div class="tootpress-toot"/>';
 
 	// Toot Elephant
-	$toot_html.=tootpress_paint_elephant( $instance, $account, $mastodon_id,$backlink);
+	$toot_html.=tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink);
 
 	// Toot Date
-	if(tootpress_is_language_german()) {
-		$date=tootpress_convert_mysqldate_to_german_format($date);
-	} else {
-		$date=tootpress_convert_mysqldate_to_international_format($date);
-	}
-
-	$toot_html.='<div class="toot-date"><p>'.esc_html($date).'</p></div>';
+	$toot_html.=tootpress_paint_date($date);
 
 	// Toot Content
 	$content=tootpress_remove_target_blank($content);
-	$toot_html.='<div class="toot-content">'.wp_kses($content, tootpress_escaping_allowed_html() ).'</div>';
+	$content=tootpress_toot_content_filter_apply($content);	
+	$toot_html.='<div class="toot-content">'.wp_kses_post($content).'</div>';
 
 	// Toot Image
 	if($media){
-		$toot_html.=wp_kses(tootpress_paint_image($mastodon_id), tootpress_escaping_allowed_html() );
+		$toot_html.=tootpress_paint_image($mastodon_id);
 	}
 
 	// Toot End
@@ -78,46 +73,83 @@ function tootpress_paint_image($tootid){
 	$toot_image=array();
 	$toot_image=tootpress_get_media_from_database($tootid);
 	$image_html='';
-
-	// Amount of Images
 	$amount_of_images=sizeof($toot_image);
 
+	// DOM
+	$image_html.='<div class="toot-image">';
+	$image_html.='<div class="';
+	if($amount_of_images>1) {
+		$image_html.='toot-gallery ';
+		$image_html.='toot-gallery-size-'.(int) $amount_of_images;
+	} else {
+		$image_html.='toot-image-single';
+	}
+	$image_html.='">';
+
+	// Image Loop
 	for($i=0;$i<$amount_of_images;$i++) {
 
-		// Image Content
-		$image_html.='<div class="toot-image ';
-
-		// Classes
+		// Gallery
 		if($amount_of_images>1) {
-			// Galleries
-			$image_html.='toot-image-gallery ';
-			$image_html.='toot-image-gallery-'.$amount_of_images.' ';
-			$image_html.='toot-image-'.($i+1);
-		} else {
-			// Single Images
-			$image_html.='toot-image-single ';
-		}
+			$image_html.='<div class="';
+			$image_html.='toot-gallery-image toot-gallery-image-'.(int) ($i+1);
+			$image_html.='">';
+		} 
 		
-		$image_html.='">';
-		$image_html.='<img ';
-		$image_html.='src="';
-		$image_html.=tootpress_get_url_image_directory();
-		$image_html.=$toot_image[$i]['attachment_file'];
-		$image_html.='" ';
-		$image_html.='alt="';
-		$image_html.=$toot_image[$i]['attachment_description'];
-		//$image_html.='" ';
-		//$image_html.='width="';
-		//$image_html.=$toot_image[0]['attachment_width'];
-		//$image_html.='" ';
-		//$image_html.='height="';
-		//$image_html.=$toot_image[0]['attachment_height'];
-		$image_html.='" />';
-		$image_html.='</div>';
+		// Image Tag
+		$image_html.=tootpress_paint_image_tag($toot_image[$i]['attachment_file'],$toot_image[$i]['attachment_description'],$toot_image[$i]['attachment_width'],$toot_image[$i]['attachment_height'],$amount_of_images,($i+1));
+
+		// Close
+		if($amount_of_images>1) {$image_html.='</div>';}
 
 	}
 
+	$image_html.='</div></div>';
+
 	return $image_html;
+}
+
+/**
+ * Create the Image Tag
+ * 
+ * @since 0.5
+ * 
+ * @param string Image File Name
+ * @param string Image Description
+ * @param int Image Width
+ * @param int Image Height
+ * @param int Amount of Images
+ * @param int Image Number
+ * @return html Image Tag
+ */
+
+function tootpress_paint_image_tag($filename, $description, $width, $height, $amount_of_images, $image_number) {
+
+		// Preparation
+		if($description==FALSE) {$description='Sorry! No image description created.';}
+		$image_dir=tootpress_get_url_image_directory();
+
+		// Image Tag
+		$image_tag='<img ';
+		$image_tag.='src="';
+		$image_tag.=esc_url($image_dir);
+		$image_tag.=esc_html($filename);
+		$image_tag.='" ';
+		$image_tag.='alt="';
+		$image_tag.=esc_html($description);
+		//$image_tag.='" ';
+		//$image_tag.='width="';
+		//$image_tag.=$toot_image[0]['attachment_width'];
+		//$image_tag.='" ';
+		//$image_tag.='height="';
+		//$image_html.=$toot_image[0]['attachment_height'];
+		$image_tag.='" />';
+
+		// Filter
+		$image_tag=tootpress_image_filter_apply($image_tag,$filename,$description, $width,$height,$image_dir,$amount_of_images,$image_number);
+
+		return $image_tag;
+
 }
 
 /**
@@ -129,12 +161,12 @@ function tootpress_paint_image($tootid){
  * @param string Mastodon Account
  * @param int Mastodon Toot ID
  * @param int Backlink Option
- * @return string html
+ * @return html Elephant
  */
 
 function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink) {
 
-	$elephant_html='';
+	$elephant_html='<div class="toot-symbol">';
 	$url='https://'.$instance.'/@'.$account.'/'.$mastodon_id;
 
 	if($backlink) {
@@ -144,23 +176,59 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 	}
 
 	// The Elephant
-	$elephant_html.='<img class="tootpress-toot-symbol" src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	$elephant_img='<img src="'.esc_url(plugins_url()).'/tootpress/tootpress_toot.png" alt="Toot Symbol" width="35" height="37"/>';
+	$elephant_img=tootpress_mastodon_logo_filter_apply($elephant_img);
+	$elephant_html.=$elephant_img;
 
 	if($backlink) {
 		$elephant_html.='</a>';
 	}
+
+	$elephant_html.='</div>';
 
 	return $elephant_html;
 
 }
 
 /**
- * Creates the Preamble 
+ * Paint the Date 
+ * 
+ * @since 0.5
+ * 
+ * @param string Date
+ * @return string html
+ */
+
+ function tootpress_paint_date($date) {
+
+	// 2023-05-30 22:40:28
+
+	$mysqldate=$date;
+
+	$date=tootpress_date_filter_apply($date);
+
+	if($mysqldate==$date) {
+
+		if(tootpress_is_language_german()) {
+			$date=tootpress_convert_mysqldate_to_german_format($date);
+		} else {
+			$date=tootpress_convert_mysqldate_to_international_format($date);
+		}
+
+	}
+
+	$date_html='<div class="toot-date"><p>'.esc_html($date).'</p></div>';
+	return $date_html;
+
+}
+
+/**
+ * Create the Preamble 
  * 
  * @since 0.4
  * 
  * @param int TootPress Current Page
- * @return string html
+ * @return html Preamble
  */
 
  function tootpress_paint_preamble($tootpress_current_page) {
@@ -169,7 +237,7 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 
 	if($tootpress_current_page==1) {
 
-		$preamble.=tootpress_preamble_filter_apply($preamble);
+		$preamble=tootpress_preamble_filter_apply($preamble);
 
 		if($preamble) {
 			$preamble='<div class="tootpress-preamble">'.$preamble.'</div>';
@@ -178,6 +246,105 @@ function tootpress_paint_elephant( $instance, $account, $mastodon_id, $backlink)
 	}
 
 	return $preamble;
+
+}
+
+/**
+ * Create the Closing
+ * 
+ * @since 0.5
+ * 
+ * @param int TootPress Current Page
+ * @return html Content
+ */
+
+ function tootpress_paint_closing($tootpress_current_page) {
+
+	$content='';
+	$lastpage=tootpress_amount_of_pages();
+
+	if($tootpress_current_page==$lastpage) {
+
+		$content.=tootpress_closing_filter_apply($content);
+
+		if($content) {
+			$content='<div class="tootpress-closing">'.$content.'</div>';
+		}
+
+	}
+
+	return $content;
+
+}
+
+/**
+ * Create the Before Loop Content.
+ * 
+ * @since 0.5
+ * 
+ * @param string empty
+ * @param int TootPress Current Page
+ * @return html Content
+ */
+
+function tootpress_paint_beforeloop($tootpress_current_page) {
+
+	$content='';
+	$content=tootpress_beforeloop_filter_apply($content, $tootpress_current_page);
+
+	if($content) {
+		$content='<div class="tootpress-beforeloop">'.$content.'</div>';
+	}
+
+	return $content;
+
+}
+
+/**
+ * Create the After Loop Content.
+ * 
+ * @since 0.5
+ * 
+ * @param string empty
+ * @param int TootPress Current Page
+ * @return html Content
+ */
+
+function tootpress_paint_afterloop($tootpress_current_page) {
+
+	$content='';
+	$content=tootpress_afterloop_filter_apply($content, $tootpress_current_page);
+
+	if($content) {
+		$content='<div class="tootpress-afterloop">'.$content.'</div>';
+	}
+
+	return $content;
+
+}
+
+/**
+ * Create the Between Element.
+ * 
+ * @since 0.5
+ * 
+ * @param int Open Loops
+ * @return html Between Element
+ */
+
+function tootpress_paint_between($open_loops) {
+
+	$content='';
+
+	if ($open_loops>1) {
+		$content=tootpress_between_filter_apply($content);
+	}
+
+	if($content) {
+		$content='<div class="tootpress-between">'.$content.'</div>';
+	}
+
+	return $content;
 
 }
 

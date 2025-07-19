@@ -47,7 +47,7 @@ function tootpress_admin_css($hook) {
 add_action( 'admin_enqueue_scripts', 'tootpress_admin_css' );
 
 /**
- * Adds Mathilda Flag
+ * Adds TootPress Flag
  * 
  * @since 0.1
  * 

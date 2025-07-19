@@ -42,6 +42,16 @@ if (!defined('ABSPATH')) { exit; }
 		}
 		add_option('tootpress_rewrite_update','0');
 	}
+
+	/* Update Process Version 0.4 */
+	if($tootpress_previous_version==4) {
+		update_option('tootpress_plugin_version', "5");
+	}
+
+	/* Update Process Version 0.5 */
+	if($tootpress_previous_version==5) {
+		update_option('tootpress_plugin_version', "6");
+	}
 	
 }
 add_action( 'plugins_loaded', 'tootpress_update' );
